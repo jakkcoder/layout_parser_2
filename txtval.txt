@@ -1,162 +1,164 @@
-[
-  {
-    "role": "READER",
-    "user_by_email": "ds-tu-sa-161@hsbc-10594356-ihubukpre-prod.iam.gserviceaccount.com"
-  },
-  {
-    "role": "READER",
-    "user_by_email": "ds-tu-sa-162@hsbc-10594356-ihubukpre-prod.iam.gserviceaccount.com"
-  },
-  {
-    "role": "READER",
-    "user_by_email": "ds-tu-sa-163@hsbc-10594356-ihubukpre-prod.iam.gserviceaccount.com"
-  },
-  {
-    "role": "READER",
-    "user_by_email": "ds-tu-sa-164@hsbc-10594356-ihubukpre-prod.iam.gserviceaccount.com"
-  },
-  {
-    "role": "READER",
-    "user_by_email": "ds-tu-sa-165@hsbc-10594356-ihubukpre-prod.iam.gserviceaccount.com"
-  },
-  {
-    "role": "READER",
-    "user_by_email": "ds-tu-sa-166@hsbc-10594356-ihubukpre-prod.iam.gserviceaccount.com"
-  },
-  {
-    "role": "READER",
-    "user_by_email": "ds-tu-sa-167@hsbc-10594356-ihubukpre-prod.iam.gserviceaccount.com"
-  },
-  {
-    "role": "READER",
-    "user_by_email": "ds-tu-sa-168@hsbc-10594356-ihubukpre-prod.iam.gserviceaccount.com"
-  },
-  {
-    "role": "READER",
-    "user_by_email": "ds-tu-sa-169@hsbc-10594356-ihubukpre-prod.iam.gserviceaccount.com"
-  },
-  {
-    "role": "READER",
-    "user_by_email": "ds-tu-sa-170@hsbc-10594356-ihubukpre-prod.iam.gserviceaccount.com"
-  },
-  {
-    "role": "READER",
-    "user_by_email": "ds-tu-sa-171@hsbc-10594356-ihubukpre-prod.iam.gserviceaccount.com"
-  },
-  {
-    "role": "READER",
-    "user_by_email": "ds-tu-sa-172@hsbc-10594356-ihubukpre-prod.iam.gserviceaccount.com"
-  },
-  {
-    "role": "READER",
-    "user_by_email": "ds-tu-sa-173@hsbc-10594356-ihubukpre-prod.iam.gserviceaccount.com"
-  },
-  {
-    "role": "READER",
-    "user_by_email": "ds-tu-sa-174@hsbc-10594356-ihubukpre-prod.iam.gserviceaccount.com"
-  },
-  {
-    "role": "READER",
-    "user_by_email": "ds-tu-sa-175@hsbc-10594356-ihubukpre-prod.iam.gserviceaccount.com"
-  },
-  {
-    "role": "READER",
-    "user_by_email": "ds-tu-sa-176@hsbc-10594356-ihubukpre-prod.iam.gserviceaccount.com"
-  },
-  {
-    "role": "READER",
-    "user_by_email": "ds-tu-sa-177@hsbc-10594356-ihubukpre-prod.iam.gserviceaccount.com"
-  },
-  {
-    "role": "READER",
-    "user_by_email": "ds-tu-sa-178@hsbc-10594356-ihubukpre-prod.iam.gserviceaccount.com"
-  },
-  {
-    "role": "READER",
-    "user_by_email": "ds-tu-sa-179@hsbc-10594356-ihubukpre-prod.iam.gserviceaccount.com"
-  },
-  {
-    "role": "READER",
-    "user_by_email": "ds-tu-sa-180@hsbc-10594356-ihubukpre-prod.iam.gserviceaccount.com"
-  },
-  {
-    "role": "READER",
-    "user_by_email": "ds-tu-sa-181@hsbc-10594356-ihubukpre-prod.iam.gserviceaccount.com"
-  },
-  {
-    "role": "READER",
-    "user_by_email": "ds-tu-sa-182@hsbc-10594356-ihubukpre-prod.iam.gserviceaccount.com"
-  },
-  {
-    "role": "READER",
-    "user_by_email": "ds-tu-sa-183@hsbc-10594356-ihubukpre-prod.iam.gserviceaccount.com"
-  },
-  {
-    "role": "READER",
-    "user_by_email": "ds-tu-sa-184@hsbc-10594356-ihubukpre-prod.iam.gserviceaccount.com"
-  },
-  {
-    "role": "READER",
-    "user_by_email": "ds-tu-sa-185@hsbc-10594356-ihubukpre-prod.iam.gserviceaccount.com"
-  },
-  {
-    "role": "READER",
-    "user_by_email": "ds-tu-sa-186@hsbc-10594356-ihubukpre-prod.iam.gserviceaccount.com"
-  },
-  {
-    "role": "READER",
-    "user_by_email": "ds-tu-sa-187@hsbc-10594356-ihubukpre-prod.iam.gserviceaccount.com"
-  },
-  {
-    "role": "READER",
-    "user_by_email": "ds-tu-sa-188@hsbc-10594356-ihubukpre-prod.iam.gserviceaccount.com"
-  },
-  {
-    "role": "READER",
-    "user_by_email": "ds-tu-sa-189@hsbc-10594356-ihubukpre-prod.iam.gserviceaccount.com"
-  },
-  {
-    "role": "READER",
-    "user_by_email": "ds-tu-sa-190@hsbc-10594356-ihubukpre-prod.iam.gserviceaccount.com"
-  },
-  {
-    "role": "READER",
-    "user_by_email": "ds-tu-sa-191@hsbc-10594356-ihubukpre-prod.iam.gserviceaccount.com"
-  },
-  {
-    "role": "READER",
-    "user_by_email": "ds-tu-sa-192@hsbc-10594356-ihubukpre-prod.iam.gserviceaccount.com"
-  },
-  {
-    "role": "READER",
-    "user_by_email": "ds-tu-sa-193@hsbc-10594356-ihubukpre-prod.iam.gserviceaccount.com"
-  },
-  {
-    "role": "READER",
-    "user_by_email": "ds-tu-sa-194@hsbc-10594356-ihubukpre-prod.iam.gserviceaccount.com"
-  },
-  {
-    "role": "READER",
-    "user_by_email": "ds-tu-sa-195@hsbc-10594356-ihubukpre-prod.iam.gserviceaccount.com"
-  },
-  {
-    "role": "READER",
-    "user_by_email": "ds-tu-sa-196@hsbc-10594356-ihubukpre-prod.iam.gserviceaccount.com"
-  },
-  {
-    "role": "READER",
-    "user_by_email": "ds-tu-sa-197@hsbc-10594356-ihubukpre-prod.iam.gserviceaccount.com"
-  },
-  {
-    "role": "READER",
-    "user_by_email": "ds-tu-sa-198@hsbc-10594356-ihubukpre-prod.iam.gserviceaccount.com"
-  },
-  {
-    "role": "READER",
-    "user_by_email": "ds-tu-sa-199@hsbc-10594356-ihubukpre-prod.iam.gserviceaccount.com"
-  },
-  {
-    "role": "READER",
-    "user_by_email": "ds-tu-sa-200@hsbc-10594356-ihubukpre-prod.iam.gserviceaccount.com"
-  }
-]
+{
+  "roles": [
+    {
+      "role": "READER",
+      "group_by_email": "gcp.hsbc-10594356-ihubukpre-prod.ds-tu-161@hsbc.com"
+    },
+    {
+      "role": "READER",
+      "group_by_email": "gcp.hsbc-10594356-ihubukpre-prod.ds-tu-162@hsbc.com"
+    },
+    {
+      "role": "READER",
+      "group_by_email": "gcp.hsbc-10594356-ihubukpre-prod.ds-tu-163@hsbc.com"
+    },
+    {
+      "role": "READER",
+      "group_by_email": "gcp.hsbc-10594356-ihubukpre-prod.ds-tu-164@hsbc.com"
+    },
+    {
+      "role": "READER",
+      "group_by_email": "gcp.hsbc-10594356-ihubukpre-prod.ds-tu-165@hsbc.com"
+    },
+    {
+      "role": "READER",
+      "group_by_email": "gcp.hsbc-10594356-ihubukpre-prod.ds-tu-166@hsbc.com"
+    },
+    {
+      "role": "READER",
+      "group_by_email": "gcp.hsbc-10594356-ihubukpre-prod.ds-tu-167@hsbc.com"
+    },
+    {
+      "role": "READER",
+      "group_by_email": "gcp.hsbc-10594356-ihubukpre-prod.ds-tu-168@hsbc.com"
+    },
+    {
+      "role": "READER",
+      "group_by_email": "gcp.hsbc-10594356-ihubukpre-prod.ds-tu-169@hsbc.com"
+    },
+    {
+      "role": "READER",
+      "group_by_email": "gcp.hsbc-10594356-ihubukpre-prod.ds-tu-170@hsbc.com"
+    },
+    {
+      "role": "READER",
+      "group_by_email": "gcp.hsbc-10594356-ihubukpre-prod.ds-tu-171@hsbc.com"
+    },
+    {
+      "role": "READER",
+      "group_by_email": "gcp.hsbc-10594356-ihubukpre-prod.ds-tu-172@hsbc.com"
+    },
+    {
+      "role": "READER",
+      "group_by_email": "gcp.hsbc-10594356-ihubukpre-prod.ds-tu-173@hsbc.com"
+    },
+    {
+      "role": "READER",
+      "group_by_email": "gcp.hsbc-10594356-ihubukpre-prod.ds-tu-174@hsbc.com"
+    },
+    {
+      "role": "READER",
+      "group_by_email": "gcp.hsbc-10594356-ihubukpre-prod.ds-tu-175@hsbc.com"
+    },
+    {
+      "role": "READER",
+      "group_by_email": "gcp.hsbc-10594356-ihubukpre-prod.ds-tu-176@hsbc.com"
+    },
+    {
+      "role": "READER",
+      "group_by_email": "gcp.hsbc-10594356-ihubukpre-prod.ds-tu-177@hsbc.com"
+    },
+    {
+      "role": "READER",
+      "group_by_email": "gcp.hsbc-10594356-ihubukpre-prod.ds-tu-178@hsbc.com"
+    },
+    {
+      "role": "READER",
+      "group_by_email": "gcp.hsbc-10594356-ihubukpre-prod.ds-tu-179@hsbc.com"
+    },
+    {
+      "role": "READER",
+      "group_by_email": "gcp.hsbc-10594356-ihubukpre-prod.ds-tu-180@hsbc.com"
+    },
+    {
+      "role": "READER",
+      "group_by_email": "gcp.hsbc-10594356-ihubukpre-prod.ds-tu-181@hsbc.com"
+    },
+    {
+      "role": "READER",
+      "group_by_email": "gcp.hsbc-10594356-ihubukpre-prod.ds-tu-182@hsbc.com"
+    },
+    {
+      "role": "READER",
+      "group_by_email": "gcp.hsbc-10594356-ihubukpre-prod.ds-tu-183@hsbc.com"
+    },
+    {
+      "role": "READER",
+      "group_by_email": "gcp.hsbc-10594356-ihubukpre-prod.ds-tu-184@hsbc.com"
+    },
+    {
+      "role": "READER",
+      "group_by_email": "gcp.hsbc-10594356-ihubukpre-prod.ds-tu-185@hsbc.com"
+    },
+    {
+      "role": "READER",
+      "group_by_email": "gcp.hsbc-10594356-ihubukpre-prod.ds-tu-186@hsbc.com"
+    },
+    {
+      "role": "READER",
+      "group_by_email": "gcp.hsbc-10594356-ihubukpre-prod.ds-tu-187@hsbc.com"
+    },
+    {
+      "role": "READER",
+      "group_by_email": "gcp.hsbc-10594356-ihubukpre-prod.ds-tu-188@hsbc.com"
+    },
+    {
+      "role": "READER",
+      "group_by_email": "gcp.hsbc-10594356-ihubukpre-prod.ds-tu-189@hsbc.com"
+    },
+    {
+      "role": "READER",
+      "group_by_email": "gcp.hsbc-10594356-ihubukpre-prod.ds-tu-190@hsbc.com"
+    },
+    {
+      "role": "READER",
+      "group_by_email": "gcp.hsbc-10594356-ihubukpre-prod.ds-tu-191@hsbc.com"
+    },
+    {
+      "role": "READER",
+      "group_by_email": "gcp.hsbc-10594356-ihubukpre-prod.ds-tu-192@hsbc.com"
+    },
+    {
+      "role": "READER",
+      "group_by_email": "gcp.hsbc-10594356-ihubukpre-prod.ds-tu-193@hsbc.com"
+    },
+    {
+      "role": "READER",
+      "group_by_email": "gcp.hsbc-10594356-ihubukpre-prod.ds-tu-194@hsbc.com"
+    },
+    {
+      "role": "READER",
+      "group_by_email": "gcp.hsbc-10594356-ihubukpre-prod.ds-tu-195@hsbc.com"
+    },
+    {
+      "role": "READER",
+      "group_by_email": "gcp.hsbc-10594356-ihubukpre-prod.ds-tu-196@hsbc.com"
+    },
+    {
+      "role": "READER",
+      "group_by_email": "gcp.hsbc-10594356-ihubukpre-prod.ds-tu-197@hsbc.com"
+    },
+    {
+      "role": "READER",
+      "group_by_email": "gcp.hsbc-10594356-ihubukpre-prod.ds-tu-198@hsbc.com"
+    },
+    {
+      "role": "READER",
+      "group_by_email": "gcp.hsbc-10594356-ihubukpre-prod.ds-tu-199@hsbc.com"
+    },
+    {
+      "role": "READER",
+      "group_by_email": "gcp.hsbc-10594356-ihubukpre-prod.ds-tu-200@hsbc.com"
+    }
+  ]
+}
