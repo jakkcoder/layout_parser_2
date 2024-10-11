@@ -1,5 +1,162 @@
-We conducted a comprehensive assessment of HSBC's DIT model performance on English and Chinese documents, utilizing a dataset comprising 12 samples (7 in English, 5 in Chinese). To evaluate the model's efficacy, we employed fundamental metrics such as Class-wise Intersection over Union (IOU), which measures the model's ability to accurately segment different classes within documents. Additionally, Precision and Recall metrics were used to gauge the model's accuracy in identifying and capturing relevant information.
-
-The evaluation process involved calculating Mean IOU to determine the overall segmentation performance across all classes. Graphical representations and tabulated data were employed to visually depict these metrics, offering a clear understanding of the model's strengths and areas requiring improvement.
-
-By assessing these metrics, we gained valuable insights into how well the DIT model performs in delineating document content accurately in both English and Chinese languages. These insights serve as a guiding framework for refining and optimizing the model within HSBC's document analysis system.
+[
+  {
+    "role": "READER",
+    "user_by_email": "ds-tu-sa-161@hsbc-10594356-ihubukpre-prod.iam.gserviceaccount.com"
+  },
+  {
+    "role": "READER",
+    "user_by_email": "ds-tu-sa-162@hsbc-10594356-ihubukpre-prod.iam.gserviceaccount.com"
+  },
+  {
+    "role": "READER",
+    "user_by_email": "ds-tu-sa-163@hsbc-10594356-ihubukpre-prod.iam.gserviceaccount.com"
+  },
+  {
+    "role": "READER",
+    "user_by_email": "ds-tu-sa-164@hsbc-10594356-ihubukpre-prod.iam.gserviceaccount.com"
+  },
+  {
+    "role": "READER",
+    "user_by_email": "ds-tu-sa-165@hsbc-10594356-ihubukpre-prod.iam.gserviceaccount.com"
+  },
+  {
+    "role": "READER",
+    "user_by_email": "ds-tu-sa-166@hsbc-10594356-ihubukpre-prod.iam.gserviceaccount.com"
+  },
+  {
+    "role": "READER",
+    "user_by_email": "ds-tu-sa-167@hsbc-10594356-ihubukpre-prod.iam.gserviceaccount.com"
+  },
+  {
+    "role": "READER",
+    "user_by_email": "ds-tu-sa-168@hsbc-10594356-ihubukpre-prod.iam.gserviceaccount.com"
+  },
+  {
+    "role": "READER",
+    "user_by_email": "ds-tu-sa-169@hsbc-10594356-ihubukpre-prod.iam.gserviceaccount.com"
+  },
+  {
+    "role": "READER",
+    "user_by_email": "ds-tu-sa-170@hsbc-10594356-ihubukpre-prod.iam.gserviceaccount.com"
+  },
+  {
+    "role": "READER",
+    "user_by_email": "ds-tu-sa-171@hsbc-10594356-ihubukpre-prod.iam.gserviceaccount.com"
+  },
+  {
+    "role": "READER",
+    "user_by_email": "ds-tu-sa-172@hsbc-10594356-ihubukpre-prod.iam.gserviceaccount.com"
+  },
+  {
+    "role": "READER",
+    "user_by_email": "ds-tu-sa-173@hsbc-10594356-ihubukpre-prod.iam.gserviceaccount.com"
+  },
+  {
+    "role": "READER",
+    "user_by_email": "ds-tu-sa-174@hsbc-10594356-ihubukpre-prod.iam.gserviceaccount.com"
+  },
+  {
+    "role": "READER",
+    "user_by_email": "ds-tu-sa-175@hsbc-10594356-ihubukpre-prod.iam.gserviceaccount.com"
+  },
+  {
+    "role": "READER",
+    "user_by_email": "ds-tu-sa-176@hsbc-10594356-ihubukpre-prod.iam.gserviceaccount.com"
+  },
+  {
+    "role": "READER",
+    "user_by_email": "ds-tu-sa-177@hsbc-10594356-ihubukpre-prod.iam.gserviceaccount.com"
+  },
+  {
+    "role": "READER",
+    "user_by_email": "ds-tu-sa-178@hsbc-10594356-ihubukpre-prod.iam.gserviceaccount.com"
+  },
+  {
+    "role": "READER",
+    "user_by_email": "ds-tu-sa-179@hsbc-10594356-ihubukpre-prod.iam.gserviceaccount.com"
+  },
+  {
+    "role": "READER",
+    "user_by_email": "ds-tu-sa-180@hsbc-10594356-ihubukpre-prod.iam.gserviceaccount.com"
+  },
+  {
+    "role": "READER",
+    "user_by_email": "ds-tu-sa-181@hsbc-10594356-ihubukpre-prod.iam.gserviceaccount.com"
+  },
+  {
+    "role": "READER",
+    "user_by_email": "ds-tu-sa-182@hsbc-10594356-ihubukpre-prod.iam.gserviceaccount.com"
+  },
+  {
+    "role": "READER",
+    "user_by_email": "ds-tu-sa-183@hsbc-10594356-ihubukpre-prod.iam.gserviceaccount.com"
+  },
+  {
+    "role": "READER",
+    "user_by_email": "ds-tu-sa-184@hsbc-10594356-ihubukpre-prod.iam.gserviceaccount.com"
+  },
+  {
+    "role": "READER",
+    "user_by_email": "ds-tu-sa-185@hsbc-10594356-ihubukpre-prod.iam.gserviceaccount.com"
+  },
+  {
+    "role": "READER",
+    "user_by_email": "ds-tu-sa-186@hsbc-10594356-ihubukpre-prod.iam.gserviceaccount.com"
+  },
+  {
+    "role": "READER",
+    "user_by_email": "ds-tu-sa-187@hsbc-10594356-ihubukpre-prod.iam.gserviceaccount.com"
+  },
+  {
+    "role": "READER",
+    "user_by_email": "ds-tu-sa-188@hsbc-10594356-ihubukpre-prod.iam.gserviceaccount.com"
+  },
+  {
+    "role": "READER",
+    "user_by_email": "ds-tu-sa-189@hsbc-10594356-ihubukpre-prod.iam.gserviceaccount.com"
+  },
+  {
+    "role": "READER",
+    "user_by_email": "ds-tu-sa-190@hsbc-10594356-ihubukpre-prod.iam.gserviceaccount.com"
+  },
+  {
+    "role": "READER",
+    "user_by_email": "ds-tu-sa-191@hsbc-10594356-ihubukpre-prod.iam.gserviceaccount.com"
+  },
+  {
+    "role": "READER",
+    "user_by_email": "ds-tu-sa-192@hsbc-10594356-ihubukpre-prod.iam.gserviceaccount.com"
+  },
+  {
+    "role": "READER",
+    "user_by_email": "ds-tu-sa-193@hsbc-10594356-ihubukpre-prod.iam.gserviceaccount.com"
+  },
+  {
+    "role": "READER",
+    "user_by_email": "ds-tu-sa-194@hsbc-10594356-ihubukpre-prod.iam.gserviceaccount.com"
+  },
+  {
+    "role": "READER",
+    "user_by_email": "ds-tu-sa-195@hsbc-10594356-ihubukpre-prod.iam.gserviceaccount.com"
+  },
+  {
+    "role": "READER",
+    "user_by_email": "ds-tu-sa-196@hsbc-10594356-ihubukpre-prod.iam.gserviceaccount.com"
+  },
+  {
+    "role": "READER",
+    "user_by_email": "ds-tu-sa-197@hsbc-10594356-ihubukpre-prod.iam.gserviceaccount.com"
+  },
+  {
+    "role": "READER",
+    "user_by_email": "ds-tu-sa-198@hsbc-10594356-ihubukpre-prod.iam.gserviceaccount.com"
+  },
+  {
+    "role": "READER",
+    "user_by_email": "ds-tu-sa-199@hsbc-10594356-ihubukpre-prod.iam.gserviceaccount.com"
+  },
+  {
+    "role": "READER",
+    "user_by_email": "ds-tu-sa-200@hsbc-10594356-ihubukpre-prod.iam.gserviceaccount.com"
+  }
+]
