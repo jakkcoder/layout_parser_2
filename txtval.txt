@@ -1,164 +1,872 @@
-{
-  "roles": [
-    {
-      "role": "READER",
-      "group_by_email": "gcp.hsbc-10594356-ihubukpre-prod.ds-tu-161@hsbc.com"
-    },
-    {
-      "role": "READER",
-      "group_by_email": "gcp.hsbc-10594356-ihubukpre-prod.ds-tu-162@hsbc.com"
-    },
-    {
-      "role": "READER",
-      "group_by_email": "gcp.hsbc-10594356-ihubukpre-prod.ds-tu-163@hsbc.com"
-    },
-    {
-      "role": "READER",
-      "group_by_email": "gcp.hsbc-10594356-ihubukpre-prod.ds-tu-164@hsbc.com"
-    },
-    {
-      "role": "READER",
-      "group_by_email": "gcp.hsbc-10594356-ihubukpre-prod.ds-tu-165@hsbc.com"
-    },
-    {
-      "role": "READER",
-      "group_by_email": "gcp.hsbc-10594356-ihubukpre-prod.ds-tu-166@hsbc.com"
-    },
-    {
-      "role": "READER",
-      "group_by_email": "gcp.hsbc-10594356-ihubukpre-prod.ds-tu-167@hsbc.com"
-    },
-    {
-      "role": "READER",
-      "group_by_email": "gcp.hsbc-10594356-ihubukpre-prod.ds-tu-168@hsbc.com"
-    },
-    {
-      "role": "READER",
-      "group_by_email": "gcp.hsbc-10594356-ihubukpre-prod.ds-tu-169@hsbc.com"
-    },
-    {
-      "role": "READER",
-      "group_by_email": "gcp.hsbc-10594356-ihubukpre-prod.ds-tu-170@hsbc.com"
-    },
-    {
-      "role": "READER",
-      "group_by_email": "gcp.hsbc-10594356-ihubukpre-prod.ds-tu-171@hsbc.com"
-    },
-    {
-      "role": "READER",
-      "group_by_email": "gcp.hsbc-10594356-ihubukpre-prod.ds-tu-172@hsbc.com"
-    },
-    {
-      "role": "READER",
-      "group_by_email": "gcp.hsbc-10594356-ihubukpre-prod.ds-tu-173@hsbc.com"
-    },
-    {
-      "role": "READER",
-      "group_by_email": "gcp.hsbc-10594356-ihubukpre-prod.ds-tu-174@hsbc.com"
-    },
-    {
-      "role": "READER",
-      "group_by_email": "gcp.hsbc-10594356-ihubukpre-prod.ds-tu-175@hsbc.com"
-    },
-    {
-      "role": "READER",
-      "group_by_email": "gcp.hsbc-10594356-ihubukpre-prod.ds-tu-176@hsbc.com"
-    },
-    {
-      "role": "READER",
-      "group_by_email": "gcp.hsbc-10594356-ihubukpre-prod.ds-tu-177@hsbc.com"
-    },
-    {
-      "role": "READER",
-      "group_by_email": "gcp.hsbc-10594356-ihubukpre-prod.ds-tu-178@hsbc.com"
-    },
-    {
-      "role": "READER",
-      "group_by_email": "gcp.hsbc-10594356-ihubukpre-prod.ds-tu-179@hsbc.com"
-    },
-    {
-      "role": "READER",
-      "group_by_email": "gcp.hsbc-10594356-ihubukpre-prod.ds-tu-180@hsbc.com"
-    },
-    {
-      "role": "READER",
-      "group_by_email": "gcp.hsbc-10594356-ihubukpre-prod.ds-tu-181@hsbc.com"
-    },
-    {
-      "role": "READER",
-      "group_by_email": "gcp.hsbc-10594356-ihubukpre-prod.ds-tu-182@hsbc.com"
-    },
-    {
-      "role": "READER",
-      "group_by_email": "gcp.hsbc-10594356-ihubukpre-prod.ds-tu-183@hsbc.com"
-    },
-    {
-      "role": "READER",
-      "group_by_email": "gcp.hsbc-10594356-ihubukpre-prod.ds-tu-184@hsbc.com"
-    },
-    {
-      "role": "READER",
-      "group_by_email": "gcp.hsbc-10594356-ihubukpre-prod.ds-tu-185@hsbc.com"
-    },
-    {
-      "role": "READER",
-      "group_by_email": "gcp.hsbc-10594356-ihubukpre-prod.ds-tu-186@hsbc.com"
-    },
-    {
-      "role": "READER",
-      "group_by_email": "gcp.hsbc-10594356-ihubukpre-prod.ds-tu-187@hsbc.com"
-    },
-    {
-      "role": "READER",
-      "group_by_email": "gcp.hsbc-10594356-ihubukpre-prod.ds-tu-188@hsbc.com"
-    },
-    {
-      "role": "READER",
-      "group_by_email": "gcp.hsbc-10594356-ihubukpre-prod.ds-tu-189@hsbc.com"
-    },
-    {
-      "role": "READER",
-      "group_by_email": "gcp.hsbc-10594356-ihubukpre-prod.ds-tu-190@hsbc.com"
-    },
-    {
-      "role": "READER",
-      "group_by_email": "gcp.hsbc-10594356-ihubukpre-prod.ds-tu-191@hsbc.com"
-    },
-    {
-      "role": "READER",
-      "group_by_email": "gcp.hsbc-10594356-ihubukpre-prod.ds-tu-192@hsbc.com"
-    },
-    {
-      "role": "READER",
-      "group_by_email": "gcp.hsbc-10594356-ihubukpre-prod.ds-tu-193@hsbc.com"
-    },
-    {
-      "role": "READER",
-      "group_by_email": "gcp.hsbc-10594356-ihubukpre-prod.ds-tu-194@hsbc.com"
-    },
-    {
-      "role": "READER",
-      "group_by_email": "gcp.hsbc-10594356-ihubukpre-prod.ds-tu-195@hsbc.com"
-    },
-    {
-      "role": "READER",
-      "group_by_email": "gcp.hsbc-10594356-ihubukpre-prod.ds-tu-196@hsbc.com"
-    },
-    {
-      "role": "READER",
-      "group_by_email": "gcp.hsbc-10594356-ihubukpre-prod.ds-tu-197@hsbc.com"
-    },
-    {
-      "role": "READER",
-      "group_by_email": "gcp.hsbc-10594356-ihubukpre-prod.ds-tu-198@hsbc.com"
-    },
-    {
-      "role": "READER",
-      "group_by_email": "gcp.hsbc-10594356-ihubukpre-prod.ds-tu-199@hsbc.com"
-    },
-    {
-      "role": "READER",
-      "group_by_email": "gcp.hsbc-10594356-ihubukpre-prod.ds-tu-200@hsbc.com"
-    }
+module "ds-tu-sa-161" {
+  source  = "../../modules/iam_binding"
+  sa_name = "ds-tu-sa-161"
+  project = var.project_name
+  role    = "iam.serviceAccountUser"
+  members = [
+    "serviceAccount:airflow-service-worker@hsbc-10594356-ihubukpre-prod.iam.gserviceaccount.com",
+    "serviceAccount:airflow-service-worker@hsbc-10505826-ihubhkds-prod.iam.gserviceaccount.com"
+  ]
+}
+
+module "ds-tu-sa-162" {
+  source  = "../../modules/iam_binding"
+  sa_name = "ds-tu-sa-162"
+  project = var.project_name
+  role    = "iam.serviceAccountUser"
+  members = [
+    "serviceAccount:airflow-service-worker@hsbc-10594356-ihubukpre-prod.iam.gserviceaccount.com",
+    "serviceAccount:airflow-service-worker@hsbc-10505826-ihubhkds-prod.iam.gserviceaccount.com"
+  ]
+}
+
+module "ds-tu-sa-163" {
+  source  = "../../modules/iam_binding"
+  sa_name = "ds-tu-sa-163"
+  project = var.project_name
+  role    = "iam.serviceAccountUser"
+  members = [
+    "serviceAccount:airflow-service-worker@hsbc-10594356-ihubukpre-prod.iam.gserviceaccount.com",
+    "serviceAccount:airflow-service-worker@hsbc-10505826-ihubhkds-prod.iam.gserviceaccount.com"
+  ]
+}
+
+module "ds-tu-sa-164" {
+  source  = "../../modules/iam_binding"
+  sa_name = "ds-tu-sa-164"
+  project = var.project_name
+  role    = "iam.serviceAccountUser"
+  members = [
+    "serviceAccount:airflow-service-worker@hsbc-10594356-ihubukpre-prod.iam.gserviceaccount.com",
+    "serviceAccount:airflow-service-worker@hsbc-10505826-ihubhkds-prod.iam.gserviceaccount.com"
+  ]
+}
+
+module "ds-tu-sa-165" {
+  source  = "../../modules/iam_binding"
+  sa_name = "ds-tu-sa-165"
+  project = var.project_name
+  role    = "iam.serviceAccountUser"
+  members = [
+    "serviceAccount:airflow-service-worker@hsbc-10594356-ihubukpre-prod.iam.gserviceaccount.com",
+    "serviceAccount:airflow-service-worker@hsbc-10505826-ihubhkds-prod.iam.gserviceaccount.com"
+  ]
+}
+
+module "ds-tu-sa-166" {
+  source  = "../../modules/iam_binding"
+  sa_name = "ds-tu-sa-166"
+  project = var.project_name
+  role    = "iam.serviceAccountUser"
+  members = [
+    "serviceAccount:airflow-service-worker@hsbc-10594356-ihubukpre-prod.iam.gserviceaccount.com",
+    "serviceAccount:airflow-service-worker@hsbc-10505826-ihubhkds-prod.iam.gserviceaccount.com"
+  ]
+}
+
+module "ds-tu-sa-167" {
+  source  = "../../modules/iam_binding"
+  sa_name = "ds-tu-sa-167"
+  project = var.project_name
+  role    = "iam.serviceAccountUser"
+  members = [
+    "serviceAccount:airflow-service-worker@hsbc-10594356-ihubukpre-prod.iam.gserviceaccount.com",
+    "serviceAccount:airflow-service-worker@hsbc-10505826-ihubhkds-prod.iam.gserviceaccount.com"
+  ]
+}
+
+module "ds-tu-sa-168" {
+  source  = "../../modules/iam_binding"
+  sa_name = "ds-tu-sa-168"
+  project = var.project_name
+  role    = "iam.serviceAccountUser"
+  members = [
+    "serviceAccount:airflow-service-worker@hsbc-10594356-ihubukpre-prod.iam.gserviceaccount.com",
+    "serviceAccount:airflow-service-worker@hsbc-10505826-ihubhkds-prod.iam.gserviceaccount.com"
+  ]
+}
+
+module "ds-tu-sa-169" {
+  source  = "../../modules/iam_binding"
+  sa_name = "ds-tu-sa-169"
+  project = var.project_name
+  role    = "iam.serviceAccountUser"
+  members = [
+    "serviceAccount:airflow-service-worker@hsbc-10594356-ihubukpre-prod.iam.gserviceaccount.com",
+    "serviceAccount:airflow-service-worker@hsbc-10505826-ihubhkds-prod.iam.gserviceaccount.com"
+  ]
+}
+
+module "ds-tu-sa-170" {
+  source  = "../../modules/iam_binding"
+  sa_name = "ds-tu-sa-170"
+  project = var.project_name
+  role    = "iam.serviceAccountUser"
+  members = [
+    "serviceAccount:airflow-service-worker@hsbc-10594356-ihubukpre-prod.iam.gserviceaccount.com",
+    "serviceAccount:airflow-service-worker@hsbc-10505826-ihubhkds-prod.iam.gserviceaccount.com"
+  ]
+}
+module "ds-tu-sa-171" {
+  source  = "../../modules/iam_binding"
+  sa_name = "ds-tu-sa-171"
+  project = var.project_name
+  role    = "iam.serviceAccountUser"
+  members = [
+    "serviceAccount:airflow-service-worker@hsbc-10594356-ihubukpre-prod.iam.gserviceaccount.com",
+    "serviceAccount:airflow-service-worker@hsbc-10505826-ihubhkds-prod.iam.gserviceaccount.com"
+  ]
+}
+
+module "ds-tu-sa-172" {
+  source  = "../../modules/iam_binding"
+  sa_name = "ds-tu-sa-172"
+  project = var.project_name
+  role    = "iam.serviceAccountUser"
+  members = [
+    "serviceAccount:airflow-service-worker@hsbc-10594356-ihubukpre-prod.iam.gserviceaccount.com",
+    "serviceAccount:airflow-service-worker@hsbc-10505826-ihubhkds-prod.iam.gserviceaccount.com"
+  ]
+}
+
+module "ds-tu-sa-173" {
+  source  = "../../modules/iam_binding"
+  sa_name = "ds-tu-sa-173"
+  project = var.project_name
+  role    = "iam.serviceAccountUser"
+  members = [
+    "serviceAccount:airflow-service-worker@hsbc-10594356-ihubukpre-prod.iam.gserviceaccount.com",
+    "serviceAccount:airflow-service-worker@hsbc-10505826-ihubhkds-prod.iam.gserviceaccount.com"
+  ]
+}
+
+module "ds-tu-sa-174" {
+  source  = "../../modules/iam_binding"
+  sa_name = "ds-tu-sa-174"
+  project = var.project_name
+  role    = "iam.serviceAccountUser"
+  members = [
+    "serviceAccount:airflow-service-worker@hsbc-10594356-ihubukpre-prod.iam.gserviceaccount.com",
+    "serviceAccount:airflow-service-worker@hsbc-10505826-ihubhkds-prod.iam.gserviceaccount.com"
+  ]
+}
+
+module "ds-tu-sa-175" {
+  source  = "../../modules/iam_binding"
+  sa_name = "ds-tu-sa-175"
+  project = var.project_name
+  role    = "iam.serviceAccountUser"
+  members = [
+    "serviceAccount:airflow-service-worker@hsbc-10594356-ihubukpre-prod.iam.gserviceaccount.com",
+    "serviceAccount:airflow-service-worker@hsbc-10505826-ihubhkds-prod.iam.gserviceaccount.com"
+  ]
+}
+
+module "ds-tu-sa-176" {
+  source  = "../../modules/iam_binding"
+  sa_name = "ds-tu-sa-176"
+  project = var.project_name
+  role    = "iam.serviceAccountUser"
+  members = [
+    "serviceAccount:airflow-service-worker@hsbc-10594356-ihubukpre-prod.iam.gserviceaccount.com",
+    "serviceAccount:airflow-service-worker@hsbc-10505826-ihubhkds-prod.iam.gserviceaccount.com"
+  ]
+}
+
+module "ds-tu-sa-177" {
+  source  = "../../modules/iam_binding"
+  sa_name = "ds-tu-sa-177"
+  project = var.project_name
+  role    = "iam.serviceAccountUser"
+  members = [
+    "serviceAccount:airflow-service-worker@hsbc-10594356-ihubukpre-prod.iam.gserviceaccount.com",
+    "serviceAccount:airflow-service-worker@hsbc-10505826-ihubhkds-prod.iam.gserviceaccount.com"
+  ]
+}
+
+module "ds-tu-sa-178" {
+  source  = "../../modules/iam_binding"
+  sa_name = "ds-tu-sa-178"
+  project = var.project_name
+  role    = "iam.serviceAccountUser"
+  members = [
+    "serviceAccount:airflow-service-worker@hsbc-10594356-ihubukpre-prod.iam.gserviceaccount.com",
+    "serviceAccount:airflow-service-worker@hsbc-10505826-ihubhkds-prod.iam.gserviceaccount.com"
+  ]
+}
+
+module "ds-tu-sa-179" {
+  source  = "../../modules/iam_binding"
+  sa_name = "ds-tu-sa-179"
+  project = var.project_name
+  role    = "iam.serviceAccountUser"
+  members = [
+    "serviceAccount:airflow-service-worker@hsbc-10594356-ihubukpre-prod.iam.gserviceaccount.com",
+    "serviceAccount:airflow-service-worker@hsbc-10505826-ihubhkds-prod.iam.gserviceaccount.com"
+  ]
+}
+
+module "ds-tu-sa-180" {
+  source  = "../../modules/iam_binding"
+  sa_name = "ds-tu-sa-180"
+  project = var.project_name
+  role    = "iam.serviceAccountUser"
+  members = [
+    "serviceAccount:airflow-service-worker@hsbc-10594356-ihubukpre-prod.iam.gserviceaccount.com",
+    "serviceAccount:airflow-service-worker@hsbc-10505826-ihubhkds-prod.iam.gserviceaccount.com"
+  ]
+}
+module "ds-tu-sa-181" {
+  source  = "../../modules/iam_binding"
+  sa_name = "ds-tu-sa-181"
+  project = var.project_name
+  role    = "iam.serviceAccountUser"
+  members = [
+    "serviceAccount:airflow-service-worker@hsbc-10594356-ihubukpre-prod.iam.gserviceaccount.com",
+    "serviceAccount:airflow-service-worker@hsbc-10505826-ihubhkds-prod.iam.gserviceaccount.com"
+  ]
+}
+
+module "ds-tu-sa-182" {
+  source  = "../../modules/iam_binding"
+  sa_name = "ds-tu-sa-182"
+  project = var.project_name
+  role    = "iam.serviceAccountUser"
+  members = [
+    "serviceAccount:airflow-service-worker@hsbc-10594356-ihubukpre-prod.iam.gserviceaccount.com",
+    "serviceAccount:airflow-service-worker@hsbc-10505826-ihubhkds-prod.iam.gserviceaccount.com"
+  ]
+}
+
+module "ds-tu-sa-183" {
+  source  = "../../modules/iam_binding"
+  sa_name = "ds-tu-sa-183"
+  project = var.project_name
+  role    = "iam.serviceAccountUser"
+  members = [
+    "serviceAccount:airflow-service-worker@hsbc-10594356-ihubukpre-prod.iam.gserviceaccount.com",
+    "serviceAccount:airflow-service-worker@hsbc-10505826-ihubhkds-prod.iam.gserviceaccount.com"
+  ]
+}
+
+module "ds-tu-sa-184" {
+  source  = "../../modules/iam_binding"
+  sa_name = "ds-tu-sa-184"
+  project = var.project_name
+  role    = "iam.serviceAccountUser"
+  members = [
+    "serviceAccount:airflow-service-worker@hsbc-10594356-ihubukpre-prod.iam.gserviceaccount.com",
+    "serviceAccount:airflow-service-worker@hsbc-10505826-ihubhkds-prod.iam.gserviceaccount.com"
+  ]
+}
+
+module "ds-tu-sa-185" {
+  source  = "../../modules/iam_binding"
+  sa_name = "ds-tu-sa-185"
+  project = var.project_name
+  role    = "iam.serviceAccountUser"
+  members = [
+    "serviceAccount:airflow-service-worker@hsbc-10594356-ihubukpre-prod.iam.gserviceaccount.com",
+    "serviceAccount:airflow-service-worker@hsbc-10505826-ihubhkds-prod.iam.gserviceaccount.com"
+  ]
+}
+
+module "ds-tu-sa-186" {
+  source  = "../../modules/iam_binding"
+  sa_name = "ds-tu-sa-186"
+  project = var.project_name
+  role    = "iam.serviceAccountUser"
+  members = [
+    "serviceAccount:airflow-service-worker@hsbc-10594356-ihubukpre-prod.iam.gserviceaccount.com",
+    "serviceAccount:airflow-service-worker@hsbc-10505826-ihubhkds-prod.iam.gserviceaccount.com"
+  ]
+}
+
+module "ds-tu-sa-187" {
+  source  = "../../modules/iam_binding"
+  sa_name = "ds-tu-sa-187"
+  project = var.project_name
+  role    = "iam.serviceAccountUser"
+  members = [
+    "serviceAccount:airflow-service-worker@hsbc-10594356-ihubukpre-prod.iam.gserviceaccount.com",
+    "serviceAccount:airflow-service-worker@hsbc-10505826-ihubhkds-prod.iam.gserviceaccount.com"
+  ]
+}
+
+module "ds-tu-sa-188" {
+  source  = "../../modules/iam_binding"
+  sa_name = "ds-tu-sa-188"
+  project = var.project_name
+  role    = "iam.serviceAccountUser"
+  members = [
+    "serviceAccount:airflow-service-worker@hsbc-10594356-ihubukpre-prod.iam.gserviceaccount.com",
+    "serviceAccount:airflow-service-worker@hsbc-10505826-ihubhkds-prod.iam.gserviceaccount.com"
+  ]
+}
+
+module "ds-tu-sa-189" {
+  source  = "../../modules/iam_binding"
+  sa_name = "ds-tu-sa-189"
+  project = var.project_name
+  role    = "iam.serviceAccountUser"
+  members = [
+    "serviceAccount:airflow-service-worker@hsbc-10594356-ihubukpre-prod.iam.gserviceaccount.com",
+    "serviceAccount:airflow-service-worker@hsbc-10505826-ihubhkds-prod.iam.gserviceaccount.com"
+  ]
+}
+
+module "ds-tu-sa-190" {
+  source  = "../../modules/iam_binding"
+  sa_name = "ds-tu-sa-190"
+  project = var.project_name
+  role    = "iam.serviceAccountUser"
+  members = [
+    "serviceAccount:airflow-service-worker@hsbc-10594356-ihubukpre-prod.iam.gserviceaccount.com",
+    "serviceAccount:airflow-service-worker@hsbc-10505826-ihubhkds-prod.iam.gserviceaccount.com"
+  ]
+}
+module "ds-tu-sa-191" {
+  source  = "../../modules/iam_binding"
+  sa_name = "ds-tu-sa-191"
+  project = var.project_name
+  role    = "iam.serviceAccountUser"
+  members = [
+    "serviceAccount:airflow-service-worker@hsbc-10594356-ihubukpre-prod.iam.gserviceaccount.com",
+    "serviceAccount:airflow-service-worker@hsbc-10505826-ihubhkds-prod.iam.gserviceaccount.com"
+  ]
+}
+
+module "ds-tu-sa-192" {
+  source  = "../../modules/iam_binding"
+  sa_name = "ds-tu-sa-192"
+  project = var.project_name
+  role    = "iam.serviceAccountUser"
+  members = [
+    "serviceAccount:airflow-service-worker@hsbc-10594356-ihubukpre-prod.iam.gserviceaccount.com",
+    "serviceAccount:airflow-service-worker@hsbc-10505826-ihubhkds-prod.iam.gserviceaccount.com"
+  ]
+}
+
+module "ds-tu-sa-193" {
+  source  = "../../modules/iam_binding"
+  sa_name = "ds-tu-sa-193"
+  project = var.project_name
+  role    = "iam.serviceAccountUser"
+  members = [
+    "serviceAccount:airflow-service-worker@hsbc-10594356-ihubukpre-prod.iam.gserviceaccount.com",
+    "serviceAccount:airflow-service-worker@hsbc-10505826-ihubhkds-prod.iam.gserviceaccount.com"
+  ]
+}
+
+module "ds-tu-sa-194" {
+  source  = "../../modules/iam_binding"
+  sa_name = "ds-tu-sa-194"
+  project = var.project_name
+  role    = "iam.serviceAccountUser"
+  members = [
+    "serviceAccount:airflow-service-worker@hsbc-10594356-ihubukpre-prod.iam.gserviceaccount.com",
+    "serviceAccount:airflow-service-worker@hsbc-10505826-ihubhkds-prod.iam.gserviceaccount.com"
+  ]
+}
+
+module "ds-tu-sa-195" {
+  source  = "../../modules/iam_binding"
+  sa_name = "ds-tu-sa-195"
+  project = var.project_name
+  role    = "iam.serviceAccountUser"
+  members = [
+    "serviceAccount:airflow-service-worker@hsbc-10594356-ihubukpre-prod.iam.gserviceaccount.com",
+    "serviceAccount:airflow-service-worker@hsbc-10505826-ihubhkds-prod.iam.gserviceaccount.com"
+  ]
+}
+
+module "ds-tu-sa-196" {
+  source  = "../../modules/iam_binding"
+  sa_name = "ds-tu-sa-196"
+  project = var.project_name
+  role    = "iam.serviceAccountUser"
+  members = [
+    "serviceAccount:airflow-service-worker@hsbc-10594356-ihubukpre-prod.iam.gserviceaccount.com",
+    "serviceAccount:airflow-service-worker@hsbc-10505826-ihubhkds-prod.iam.gserviceaccount.com"
+  ]
+}
+
+module "ds-tu-sa-197" {
+  source  = "../../modules/iam_binding"
+  sa_name = "ds-tu-sa-197"
+  project = var.project_name
+  role    = "iam.serviceAccountUser"
+  members = [
+    "serviceAccount:airflow-service-worker@hsbc-10594356-ihubukpre-prod.iam.gserviceaccount.com",
+    "serviceAccount:airflow-service-worker@hsbc-10505826-ihubhkds-prod.iam.gserviceaccount.com"
+  ]
+}
+
+module "ds-tu-sa-198" {
+  source  = "../../modules/iam_binding"
+  sa_name = "ds-tu-sa-198"
+  project = var.project_name
+  role    = "iam.serviceAccountUser"
+  members = [
+    "serviceAccount:airflow-service-worker@hsbc-10594356-ihubukpre-prod.iam.gserviceaccount.com",
+    "serviceAccount:airflow-service-worker@hsbc-10505826-ihubhkds-prod.iam.gserviceaccount.com"
+  ]
+}
+
+module "ds-tu-sa-199" {
+  source  = "../../modules/iam_binding"
+  sa_name = "ds-tu-sa-199"
+  project = var.project_name
+  role    = "iam.serviceAccountUser"
+  members = [
+    "serviceAccount:airflow-service-worker@hsbc-10594356-ihubukpre-prod.iam.gserviceaccount.com",
+    "serviceAccount:airflow-service-worker@hsbc-10505826-ihubhkds-prod.iam.gserviceaccount.com"
+  ]
+}
+
+module "ds-tu-sa-200" {
+  source  = "../../modules/iam_binding"
+  sa_name = "ds-tu-sa-200"
+  project = var.project_name
+  role    = "iam.serviceAccountUser"
+  members = [
+    "serviceAccount:airflow-service-worker@hsbc-10594356-ihubukpre-prod.iam.gserviceaccount.com",
+    "serviceAccount:airflow-service-worker@hsbc-10505826-ihubhkds-prod.iam.gserviceaccount.com"
+  ]
+}
+module "ds-tu-sa-161-dsw-binding" {
+  source  = "../../modules/iam_binding"
+  sa_name = "ds-tu-sa-161"
+  project = var.project_name
+  role    = "iam.serviceAccountTokenCreator"
+  members = [
+    "serviceAccount:airflow-service-worker@hsbc-10594356-ihubukpre-prod.iam.gserviceaccount.com",
+    "serviceAccount:airflow-service-worker@hsbc-10505826-ihubhkds-prod.iam.gserviceaccount.com"
+  ]
+}
+
+module "ds-tu-sa-162-dsw-binding" {
+  source  = "../../modules/iam_binding"
+  sa_name = "ds-tu-sa-162"
+  project = var.project_name
+  role    = "iam.serviceAccountTokenCreator"
+  members = [
+    "serviceAccount:airflow-service-worker@hsbc-10594356-ihubukpre-prod.iam.gserviceaccount.com",
+    "serviceAccount:airflow-service-worker@hsbc-10505826-ihubhkds-prod.iam.gserviceaccount.com"
+  ]
+}
+
+module "ds-tu-sa-163-dsw-binding" {
+  source  = "../../modules/iam_binding"
+  sa_name = "ds-tu-sa-163"
+  project = var.project_name
+  role    = "iam.serviceAccountTokenCreator"
+  members = [
+    "serviceAccount:airflow-service-worker@hsbc-10594356-ihubukpre-prod.iam.gserviceaccount.com",
+    "serviceAccount:airflow-service-worker@hsbc-10505826-ihubhkds-prod.iam.gserviceaccount.com"
+  ]
+}
+
+module "ds-tu-sa-164-dsw-binding" {
+  source  = "../../modules/iam_binding"
+  sa_name = "ds-tu-sa-164"
+  project = var.project_name
+  role    = "iam.serviceAccountTokenCreator"
+  members = [
+    "serviceAccount:airflow-service-worker@hsbc-10594356-ihubukpre-prod.iam.gserviceaccount.com",
+    "serviceAccount:airflow-service-worker@hsbc-10505826-ihubhkds-prod.iam.gserviceaccount.com"
+  ]
+}
+
+module "ds-tu-sa-165-dsw-binding" {
+  source  = "../../modules/iam_binding"
+  sa_name = "ds-tu-sa-165"
+  project = var.project_name
+  role    = "iam.serviceAccountTokenCreator"
+  members = [
+    "serviceAccount:airflow-service-worker@hsbc-10594356-ihubukpre-prod.iam.gserviceaccount.com",
+    "serviceAccount:airflow-service-worker@hsbc-10505826-ihubhkds-prod.iam.gserviceaccount.com"
+  ]
+}
+
+module "ds-tu-sa-166-dsw-binding" {
+  source  = "../../modules/iam_binding"
+  sa_name = "ds-tu-sa-166"
+  project = var.project_name
+  role    = "iam.serviceAccountTokenCreator"
+  members = [
+    "serviceAccount:airflow-service-worker@hsbc-10594356-ihubukpre-prod.iam.gserviceaccount.com",
+    "serviceAccount:airflow-service-worker@hsbc-10505826-ihubhkds-prod.iam.gserviceaccount.com"
+  ]
+}
+
+module "ds-tu-sa-167-dsw-binding" {
+  source  = "../../modules/iam_binding"
+  sa_name = "ds-tu-sa-167"
+  project = var.project_name
+  role    = "iam.serviceAccountTokenCreator"
+  members = [
+    "serviceAccount:airflow-service-worker@hsbc-10594356-ihubukpre-prod.iam.gserviceaccount.com",
+    "serviceAccount:airflow-service-worker@hsbc-10505826-ihubhkds-prod.iam.gserviceaccount.com"
+  ]
+}
+
+module "ds-tu-sa-168-dsw-binding" {
+  source  = "../../modules/iam_binding"
+  sa_name = "ds-tu-sa-168"
+  project = var.project_name
+  role    = "iam.serviceAccountTokenCreator"
+  members = [
+    "serviceAccount:airflow-service-worker@hsbc-10594356-ihubukpre-prod.iam.gserviceaccount.com",
+    "serviceAccount:airflow-service-worker@hsbc-10505826-ihubhkds-prod.iam.gserviceaccount.com"
+  ]
+}
+
+module "ds-tu-sa-169-dsw-binding" {
+  source  = "../../modules/iam_binding"
+  sa_name = "ds-tu-sa-169"
+  project = var.project_name
+  role    = "iam.serviceAccountTokenCreator"
+  members = [
+    "serviceAccount:airflow-service-worker@hsbc-10594356-ihubukpre-prod.iam.gserviceaccount.com",
+    "serviceAccount:airflow-service-worker@hsbc-10505826-ihubhkds-prod.iam.gserviceaccount.com"
+  ]
+}
+
+module "ds-tu-sa-170-dsw-binding" {
+  source  = "../../modules/iam_binding"
+  sa_name = "ds-tu-sa-170"
+  project = var.project_name
+  role    = "iam.serviceAccountTokenCreator"
+  members = [
+    "serviceAccount:airflow-service-worker@hsbc-10594356-ihubukpre-prod.iam.gserviceaccount.com",
+    "serviceAccount:airflow-service-worker@hsbc-10505826-ihubhkds-prod.iam.gserviceaccount.com"
+  ]
+}
+module "ds-tu-sa-171-dsw-binding" {
+  source  = "../../modules/iam_binding"
+  sa_name = "ds-tu-sa-171"
+  project = var.project_name
+  role    = "iam.serviceAccountTokenCreator"
+  members = [
+    "serviceAccount:airflow-service-worker@hsbc-10594356-ihubukpre-prod.iam.gserviceaccount.com",
+    "serviceAccount:airflow-service-worker@hsbc-10505826-ihubhkds-prod.iam.gserviceaccount.com"
+  ]
+}
+
+module "ds-tu-sa-172-dsw-binding" {
+  source  = "../../modules/iam_binding"
+  sa_name = "ds-tu-sa-172"
+  project = var.project_name
+  role    = "iam.serviceAccountTokenCreator"
+  members = [
+    "serviceAccount:airflow-service-worker@hsbc-10594356-ihubukpre-prod.iam.gserviceaccount.com",
+    "serviceAccount:airflow-service-worker@hsbc-10505826-ihubhkds-prod.iam.gserviceaccount.com"
+  ]
+}
+
+module "ds-tu-sa-173-dsw-binding" {
+  source  = "../../modules/iam_binding"
+  sa_name = "ds-tu-sa-173"
+  project = var.project_name
+  role    = "iam.serviceAccountTokenCreator"
+  members = [
+    "serviceAccount:airflow-service-worker@hsbc-10594356-ihubukpre-prod.iam.gserviceaccount.com",
+    "serviceAccount:airflow-service-worker@hsbc-10505826-ihubhkds-prod.iam.gserviceaccount.com"
+  ]
+}
+
+module "ds-tu-sa-174-dsw-binding" {
+  source  = "../../modules/iam_binding"
+  sa_name = "ds-tu-sa-174"
+  project = var.project_name
+  role    = "iam.serviceAccountTokenCreator"
+  members = [
+    "serviceAccount:airflow-service-worker@hsbc-10594356-ihubukpre-prod.iam.gserviceaccount.com",
+    "serviceAccount:airflow-service-worker@hsbc-10505826-ihubhkds-prod.iam.gserviceaccount.com"
+  ]
+}
+
+module "ds-tu-sa-175-dsw-binding" {
+  source  = "../../modules/iam_binding"
+  sa_name = "ds-tu-sa-175"
+  project = var.project_name
+  role    = "iam.serviceAccountTokenCreator"
+  members = [
+    "serviceAccount:airflow-service-worker@hsbc-10594356-ihubukpre-prod.iam.gserviceaccount.com",
+    "serviceAccount:airflow-service-worker@hsbc-10505826-ihubhkds-prod.iam.gserviceaccount.com"
+  ]
+}
+
+module "ds-tu-sa-176-dsw-binding" {
+  source  = "../../modules/iam_binding"
+  sa_name = "ds-tu-sa-176"
+  project = var.project_name
+  role    = "iam.serviceAccountTokenCreator"
+  members = [
+    "serviceAccount:airflow-service-worker@hsbc-10594356-ihubukpre-prod.iam.gserviceaccount.com",
+    "serviceAccount:airflow-service-worker@hsbc-10505826-ihubhkds-prod.iam.gserviceaccount.com"
+  ]
+}
+
+module "ds-tu-sa-177-dsw-binding" {
+  source  = "../../modules/iam_binding"
+  sa_name = "ds-tu-sa-177"
+  project = var.project_name
+  role    = "iam.serviceAccountTokenCreator"
+  members = [
+    "serviceAccount:airflow-service-worker@hsbc-10594356-ihubukpre-prod.iam.gserviceaccount.com",
+    "serviceAccount:airflow-service-worker@hsbc-10505826-ihubhkds-prod.iam.gserviceaccount.com"
+  ]
+}
+
+module "ds-tu-sa-178-dsw-binding" {
+  source  = "../../modules/iam_binding"
+  sa_name = "ds-tu-sa-178"
+  project = var.project_name
+  role    = "iam.serviceAccountTokenCreator"
+  members = [
+    "serviceAccount:airflow-service-worker@hsbc-10594356-ihubukpre-prod.iam.gserviceaccount.com",
+    "serviceAccount:airflow-service-worker@hsbc-10505826-ihubhkds-prod.iam.gserviceaccount.com"
+  ]
+}
+
+module "ds-tu-sa-179-dsw-binding" {
+  source  = "../../modules/iam_binding"
+  sa_name = "ds-tu-sa-179"
+  project = var.project_name
+  role    = "iam.serviceAccountTokenCreator"
+  members = [
+    "serviceAccount:airflow-service-worker@hsbc-10594356-ihubukpre-prod.iam.gserviceaccount.com",
+    "serviceAccount:airflow-service-worker@hsbc-10505826-ihubhkds-prod.iam.gserviceaccount.com"
+  ]
+}
+
+module "ds-tu-sa-180-dsw-binding" {
+  source  = "../../modules/iam_binding"
+  sa_name = "ds-tu-sa-180"
+  project = var.project_name
+  role    = "iam.serviceAccountTokenCreator"
+  members = [
+    "serviceAccount:airflow-service-worker@hsbc-10594356-ihubukpre-prod.iam.gserviceaccount.com",
+    "serviceAccount:airflow-service-worker@hsbc-10505826-ihubhkds-prod.iam.gserviceaccount.com"
+  ]
+}
+module "ds-tu-sa-181-dsw-binding" {
+  source  = "../../modules/iam_binding"
+  sa_name = "ds-tu-sa-181"
+  project = var.project_name
+  role    = "iam.serviceAccountTokenCreator"
+  members = [
+    "serviceAccount:airflow-service-worker@hsbc-10594356-ihubukpre-prod.iam.gserviceaccount.com",
+    "serviceAccount:airflow-service-worker@hsbc-10505826-ihubhkds-prod.iam.gserviceaccount.com"
+  ]
+}
+
+module "ds-tu-sa-182-dsw-binding" {
+  source  = "../../modules/iam_binding"
+  sa_name = "ds-tu-sa-182"
+  project = var.project_name
+  role    = "iam.serviceAccountTokenCreator"
+  members = [
+    "serviceAccount:airflow-service-worker@hsbc-10594356-ihubukpre-prod.iam.gserviceaccount.com",
+    "serviceAccount:airflow-service-worker@hsbc-10505826-ihubhkds-prod.iam.gserviceaccount.com"
+  ]
+}
+
+module "ds-tu-sa-183-dsw-binding" {
+  source  = "../../modules/iam_binding"
+  sa_name = "ds-tu-sa-183"
+  project = var.project_name
+  role    = "iam.serviceAccountTokenCreator"
+  members = [
+    "serviceAccount:airflow-service-worker@hsbc-10594356-ihubukpre-prod.iam.gserviceaccount.com",
+    "serviceAccount:airflow-service-worker@hsbc-10505826-ihubhkds-prod.iam.gserviceaccount.com"
+  ]
+}
+
+module "ds-tu-sa-184-dsw-binding" {
+  source  = "../../modules/iam_binding"
+  sa_name = "ds-tu-sa-184"
+  project = var.project_name
+  role    = "iam.serviceAccountTokenCreator"
+  members = [
+    "serviceAccount:airflow-service-worker@hsbc-10594356-ihubukpre-prod.iam.gserviceaccount.com",
+    "serviceAccount:airflow-service-worker@hsbc-10505826-ihubhkds-prod.iam.gserviceaccount.com"
+  ]
+}
+
+module "ds-tu-sa-185-dsw-binding" {
+  source  = "../../modules/iam_binding"
+  sa_name = "ds-tu-sa-185"
+  project = var.project_name
+  role    = "iam.serviceAccountTokenCreator"
+  members = [
+    "serviceAccount:airflow-service-worker@hsbc-10594356-ihubukpre-prod.iam.gserviceaccount.com",
+    "serviceAccount:airflow-service-worker@hsbc-10505826-ihubhkds-prod.iam.gserviceaccount.com"
+  ]
+}
+
+module "ds-tu-sa-186-dsw-binding" {
+  source  = "../../modules/iam_binding"
+  sa_name = "ds-tu-sa-186"
+  project = var.project_name
+  role    = "iam.serviceAccountTokenCreator"
+  members = [
+    "serviceAccount:airflow-service-worker@hsbc-10594356-ihubukpre-prod.iam.gserviceaccount.com",
+    "serviceAccount:airflow-service-worker@hsbc-10505826-ihubhkds-prod.iam.gserviceaccount.com"
+  ]
+}
+
+module "ds-tu-sa-187-dsw-binding" {
+  source  = "../../modules/iam_binding"
+  sa_name = "ds-tu-sa-187"
+  project = var.project_name
+  role    = "iam.serviceAccountTokenCreator"
+  members = [
+    "serviceAccount:airflow-service-worker@hsbc-10594356-ihubukpre-prod.iam.gserviceaccount.com",
+    "serviceAccount:airflow-service-worker@hsbc-10505826-ihubhkds-prod.iam.gserviceaccount.com"
+  ]
+}
+
+module "ds-tu-sa-188-dsw-binding" {
+  source  = "../../modules/iam_binding"
+  sa_name = "ds-tu-sa-188"
+  project = var.project_name
+  role    = "iam.serviceAccountTokenCreator"
+  members = [
+    "serviceAccount:airflow-service-worker@hsbc-10594356-ihubukpre-prod.iam.gserviceaccount.com",
+    "serviceAccount:airflow-service-worker@hsbc-10505826-ihubhkds-prod.iam.gserviceaccount.com"
+  ]
+}
+
+module "ds-tu-sa-189-dsw-binding" {
+  source  = "../../modules/iam_binding"
+  sa_name = "ds-tu-sa-189"
+  project = var.project_name
+  role    = "iam.serviceAccountTokenCreator"
+  members = [
+    "serviceAccount:airflow-service-worker@hsbc-10594356-ihubukpre-prod.iam.gserviceaccount.com",
+    "serviceAccount:airflow-service-worker@hsbc-10505826-ihubhkds-prod.iam.gserviceaccount.com"
+  ]
+}
+
+module "ds-tu-sa-190-dsw-binding" {
+  source  = "../../modules/iam_binding"
+  sa_name = "ds-tu-sa-190"
+  project = var.project_name
+  role    = "iam.serviceAccountTokenCreator"
+  members = [
+    "serviceAccount:airflow-service-worker@hsbc-10594356-ihubukpre-prod.iam.gserviceaccount.com",
+    "serviceAccount:airflow-service-worker@hsbc-10505826-ihubhkds-prod.iam.gserviceaccount.com"
+  ]
+}
+module "ds-tu-sa-191-dsw-binding" {
+  source  = "../../modules/iam_binding"
+  sa_name = "ds-tu-sa-191"
+  project = var.project_name
+  role    = "iam.serviceAccountTokenCreator"
+  members = [
+    "serviceAccount:airflow-service-worker@hsbc-10594356-ihubukpre-prod.iam.gserviceaccount.com",
+    "serviceAccount:airflow-service-worker@hsbc-10505826-ihubhkds-prod.iam.gserviceaccount.com"
+  ]
+}
+
+module "ds-tu-sa-192-dsw-binding" {
+  source  = "../../modules/iam_binding"
+  sa_name = "ds-tu-sa-192"
+  project = var.project_name
+  role    = "iam.serviceAccountTokenCreator"
+  members = [
+    "serviceAccount:airflow-service-worker@hsbc-10594356-ihubukpre-prod.iam.gserviceaccount.com",
+    "serviceAccount:airflow-service-worker@hsbc-10505826-ihubhkds-prod.iam.gserviceaccount.com"
+  ]
+}
+
+module "ds-tu-sa-193-dsw-binding" {
+  source  = "../../modules/iam_binding"
+  sa_name = "ds-tu-sa-193"
+  project = var.project_name
+  role    = "iam.serviceAccountTokenCreator"
+  members = [
+    "serviceAccount:airflow-service-worker@hsbc-10594356-ihubukpre-prod.iam.gserviceaccount.com",
+    "serviceAccount:airflow-service-worker@hsbc-10505826-ihubhkds-prod.iam.gserviceaccount.com"
+  ]
+}
+
+module "ds-tu-sa-194-dsw-binding" {
+  source  = "../../modules/iam_binding"
+  sa_name = "ds-tu-sa-194"
+  project = var.project_name
+  role    = "iam.serviceAccountTokenCreator"
+  members = [
+    "serviceAccount:airflow-service-worker@hsbc-10594356-ihubukpre-prod.iam.gserviceaccount.com",
+    "serviceAccount:airflow-service-worker@hsbc-10505826-ihubhkds-prod.iam.gserviceaccount.com"
+  ]
+}
+
+module "ds-tu-sa-195-dsw-binding" {
+  source  = "../../modules/iam_binding"
+  sa_name = "ds-tu-sa-195"
+  project = var.project_name
+  role    = "iam.serviceAccountTokenCreator"
+  members = [
+    "serviceAccount:airflow-service-worker@hsbc-10594356-ihubukpre-prod.iam.gserviceaccount.com",
+    "serviceAccount:airflow-service-worker@hsbc-10505826-ihubhkds-prod.iam.gserviceaccount.com"
+  ]
+}
+
+module "ds-tu-sa-196-dsw-binding" {
+  source  = "../../modules/iam_binding"
+  sa_name = "ds-tu-sa-196"
+  project = var.project_name
+  role    = "iam.serviceAccountTokenCreator"
+  members = [
+    "serviceAccount:airflow-service-worker@hsbc-10594356-ihubukpre-prod.iam.gserviceaccount.com",
+    "serviceAccount:airflow-service-worker@hsbc-10505826-ihubhkds-prod.iam.gserviceaccount.com"
+  ]
+}
+
+module "ds-tu-sa-197-dsw-binding" {
+  source  = "../../modules/iam_binding"
+  sa_name = "ds-tu-sa-197"
+  project = var.project_name
+  role    = "iam.serviceAccountTokenCreator"
+  members = [
+    "serviceAccount:airflow-service-worker@hsbc-10594356-ihubukpre-prod.iam.gserviceaccount.com",
+    "serviceAccount:airflow-service-worker@hsbc-10505826-ihubhkds-prod.iam.gserviceaccount.com"
+  ]
+}
+
+module "ds-tu-sa-198-dsw-binding" {
+  source  = "../../modules/iam_binding"
+  sa_name = "ds-tu-sa-198"
+  project = var.project_name
+  role    = "iam.serviceAccountTokenCreator"
+  members = [
+    "serviceAccount:airflow-service-worker@hsbc-10594356-ihubukpre-prod.iam.gserviceaccount.com",
+    "serviceAccount:airflow-service-worker@hsbc-10505826-ihubhkds-prod.iam.gserviceaccount.com"
+  ]
+}
+
+module "ds-tu-sa-199-dsw-binding" {
+  source  = "../../modules/iam_binding"
+  sa_name = "ds-tu-sa-199"
+  project = var.project_name
+  role    = "iam.serviceAccountTokenCreator"
+  members = [
+    "serviceAccount:airflow-service-worker@hsbc-10594356-ihubukpre-prod.iam.gserviceaccount.com",
+    "serviceAccount:airflow-service-worker@hsbc-10505826-ihubhkds-prod.iam.gserviceaccount.com"
+  ]
+}
+
+module "ds-tu-sa-200-dsw-binding" {
+  source  = "../../modules/iam_binding"
+  sa_name = "ds-tu-sa-200"
+  project = var.project_name
+  role    = "iam.serviceAccountTokenCreator"
+  members = [
+    "serviceAccount:airflow-service-worker@hsbc-10594356-ihubukpre-prod.iam.gserviceaccount.com",
+    "serviceAccount:airflow-service-worker@hsbc-10505826-ihubhkds-prod.iam.gserviceaccount.com"
   ]
 }
