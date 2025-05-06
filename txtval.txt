@@ -1,29 +1,61 @@
-import jwt  # Ensure you have PyJWT installed
+import boto3
+import sys
+from pathlib import Path
+from tqdm import tqdm
 
-response["responses"] = [
-    (
-        auth_response
-        if not (token := next((a.get("authzToken") for a in auth_response.get("advice", []) if "authzToken" in a), None))
-        else (
-            auth_response.update(
-                {
-                    "advice": [
-                        {
-                            **a,
-                            "type": "informational",
-                            "actionId": (sbx_values := jwt.decode(token, options={"verify_signature": False}).get("sbx", "").split(","))[0] if len(sbx_values) >= 2 else None,
-                            "resourceId": sbx_values[1] if len(sbx_values) >= 2 else None,
-                        }
-                        for a in auth_response.get("advice", [])
-                    ],
-                    "obligations": auth_response.get("obligations", []) + [{"resourceId": sbx_values[1]}] if len(sbx_values) >= 2 else [],
-                }
-            )
-            or auth_response
-        )
-    )
-    for auth_response in response["responses"]
-    if auth_response["decision"] in {"PERMIT", "INDETERMINATE"}
-    and any(a.get("resourceId") for a in auth_response.get("advice", []))
-    and any(o.get("actionId") for o in auth_response.get("obligations", []))
-]
+# Configurations
+READ_PROFILE = "ReadOnly"
+WRITE_PROFILE = "PowerUser"
+SOURCE_BUCKET = "source-bucket-from-read-account"
+DEST_BUCKET = "destination-bucket-on-write-account"
+PREFIX = ""
+LOG_FILE = "copied_files.log"
+
+# Create S3 clients
+try:
+    s3_read = boto3.Session(profile_name=READ_PROFILE).client("s3")
+    s3_write = boto3.Session(profile_name=WRITE_PROFILE).client("s3")
+except Exception as e:
+    print(f"❌ Failed to create boto3 sessions: {e}")
+    sys.exit(1)
+
+# Load already copied keys
+log_path = Path(LOG_FILE)
+copied_files = set()
+if log_path.exists():
+    copied_files = set(log_path.read_text().splitlines())
+
+# Step 1: Collect list of keys to copy
+print("🔍 Fetching list of objects...")
+keys_to_copy = []
+
+paginator = s3_read.get_paginator("list_objects_v2")
+for page in paginator.paginate(Bucket=SOURCE_BUCKET, Prefix=PREFIX):
+    for obj in page.get("Contents", []):
+        key = obj["Key"]
+        if key not in copied_files:
+            keys_to_copy.append(key)
+
+print(f"📦 Total files to copy: {len(keys_to_copy)}")
+
+# Step 2: Stream and copy with tqdm
+try:
+    for key in tqdm(keys_to_copy, desc="🔄 Copying files", unit="file"):
+        try:
+            response = s3_read.get_object(Bucket=SOURCE_BUCKET, Key=key)
+            body_stream = response["Body"]
+            s3_write.upload_fileobj(body_stream, DEST_BUCKET, key)
+
+            # Log success
+            with open(LOG_FILE, "a") as log:
+                log.write(f"{key}\n")
+
+        except Exception as copy_err:
+            print(f"\n❌ Error copying {key}: {copy_err}")
+            sys.exit(1)
+
+except Exception as err:
+    print(f"\n❌ Fatal error during copy loop: {err}")
+    sys.exit(1)
+
+print("✅ All uncopied files streamed and saved successfully.")
