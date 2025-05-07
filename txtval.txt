@@ -1,61 +1,75 @@
 import boto3
+import os
 import sys
-from pathlib import Path
+import time
+from multiprocessing import Pool, cpu_count, Lock, Manager
 from tqdm import tqdm
 
-# Configurations
-READ_PROFILE = "ReadOnly"
-WRITE_PROFILE = "PowerUser"
-SOURCE_BUCKET = "source-bucket-from-read-account"
-DEST_BUCKET = "destination-bucket-on-write-account"
-PREFIX = ""
-LOG_FILE = "copied_files.log"
+# Set your bucket names and AWS profiles
+SOURCE_BUCKET = 'your-source-bucket-name'
+DEST_BUCKET = 'your-destination-bucket-name'
+LOG_FILE = 'copied_keys.log'
+PREFIX = 'golden-online-metrics/'
 
-# Create S3 clients
-try:
-    s3_read = boto3.Session(profile_name=READ_PROFILE).client("s3")
-    s3_write = boto3.Session(profile_name=WRITE_PROFILE).client("s3")
-except Exception as e:
-    print(f"❌ Failed to create boto3 sessions: {e}")
-    sys.exit(1)
+# Set up boto3 clients globally so each process can access
+s3_read = boto3.client('s3', profile_name='ReadOnly')
+s3_write = boto3.client('s3', profile_name='PowerUser')
 
-# Load already copied keys
-log_path = Path(LOG_FILE)
-copied_files = set()
-if log_path.exists():
-    copied_files = set(log_path.read_text().splitlines())
+# Lock for writing logs from multiple processes
+log_lock = Lock()
 
-# Step 1: Collect list of keys to copy
-print("🔍 Fetching list of objects...")
-keys_to_copy = []
+# Retry logic + copy
+def copy_key(args):
+    key, copied_keys = args
 
-paginator = s3_read.get_paginator("list_objects_v2")
-for page in paginator.paginate(Bucket=SOURCE_BUCKET, Prefix=PREFIX):
-    for obj in page.get("Contents", []):
-        key = obj["Key"]
-        if key not in copied_files:
-            keys_to_copy.append(key)
+    if key in copied_keys:
+        return key  # Already copied
 
-print(f"📦 Total files to copy: {len(keys_to_copy)}")
-
-# Step 2: Stream and copy with tqdm
-try:
-    for key in tqdm(keys_to_copy, desc="🔄 Copying files", unit="file"):
+    max_retries = 2
+    for attempt in range(max_retries + 1):
         try:
             response = s3_read.get_object(Bucket=SOURCE_BUCKET, Key=key)
-            body_stream = response["Body"]
-            s3_write.upload_fileobj(body_stream, DEST_BUCKET, key)
+            body = response['Body']
+            s3_write.upload_fileobj(body, DEST_BUCKET, key)
 
-            # Log success
-            with open(LOG_FILE, "a") as log:
-                log.write(f"{key}\n")
+            with log_lock:
+                with open(LOG_FILE, 'a') as log:
+                    log.write(f"{key}\n")
+            return key  # success
+        except Exception as e:
+            if attempt < max_retries:
+                time.sleep(2 ** attempt)  # exponential backoff
+            else:
+                print(f"❌ Failed after retries: {key} - {e}", file=sys.stderr)
+                return None
 
-        except Exception as copy_err:
-            print(f"\n❌ Error copying {key}: {copy_err}")
-            sys.exit(1)
+def main():
+    # Load previously copied keys
+    if os.path.exists(LOG_FILE):
+        with open(LOG_FILE, 'r') as f:
+            copied_keys = set(line.strip() for line in f)
+    else:
+        copied_keys = set()
 
-except Exception as err:
-    print(f"\n❌ Fatal error during copy loop: {err}")
-    sys.exit(1)
+    print("🔍 Fetching list of objects...")
+    paginator = s3_read.get_paginator('list_objects_v2')
+    all_keys = []
+    for page in paginator.paginate(Bucket=SOURCE_BUCKET, Prefix=PREFIX):
+        all_keys += [obj['Key'] for obj in page.get('Contents', [])]
 
-print("✅ All uncopied files streamed and saved successfully.")
+    keys_to_copy = [key for key in all_keys if key not in copied_keys]
+    print(f"📦 Total files to copy: {len(keys_to_copy)}")
+
+    # Multiprocessing pool with tqdm
+    with Manager() as manager:
+        shared_copied = manager.dict()
+        args = [(key, copied_keys) for key in keys_to_copy]
+
+        with Pool(processes=cpu_count()) as pool:
+            for _ in tqdm(pool.imap_unordered(copy_key, args), total=len(args), desc="Copying files", unit="file"):
+                pass
+
+    print("✅ All uncopied files streamed and saved successfully.")
+
+if __name__ == "__main__":
+    main()
