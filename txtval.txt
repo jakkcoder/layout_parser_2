@@ -1,75 +1,73 @@
-import boto3
-import os
-import sys
-import time
-from multiprocessing import Pool, cpu_count, Lock, Manager
-from tqdm import tqdm
-
-# Set your bucket names and AWS profiles
-SOURCE_BUCKET = 'your-source-bucket-name'
-DEST_BUCKET = 'your-destination-bucket-name'
-LOG_FILE = 'copied_keys.log'
-PREFIX = 'golden-online-metrics/'
-
-# Set up boto3 clients globally so each process can access
-s3_read = boto3.client('s3', profile_name='ReadOnly')
-s3_write = boto3.client('s3', profile_name='PowerUser')
-
-# Lock for writing logs from multiple processes
-log_lock = Lock()
-
-# Retry logic + copy
-def copy_key(args):
-    key, copied_keys = args
-
-    if key in copied_keys:
-        return key  # Already copied
-
-    max_retries = 2
-    for attempt in range(max_retries + 1):
-        try:
-            response = s3_read.get_object(Bucket=SOURCE_BUCKET, Key=key)
-            body = response['Body']
-            s3_write.upload_fileobj(body, DEST_BUCKET, key)
-
-            with log_lock:
-                with open(LOG_FILE, 'a') as log:
-                    log.write(f"{key}\n")
-            return key  # success
-        except Exception as e:
-            if attempt < max_retries:
-                time.sleep(2 ** attempt)  # exponential backoff
-            else:
-                print(f"❌ Failed after retries: {key} - {e}", file=sys.stderr)
-                return None
+from pyspark.sql import SparkSession, types as T
+import argparse
+from pyspark.sql.functions import year, month, dayofmonth, hour, current_timestamp
 
 def main():
-    # Load previously copied keys
-    if os.path.exists(LOG_FILE):
-        with open(LOG_FILE, 'r') as f:
-            copied_keys = set(line.strip() for line in f)
-    else:
-        copied_keys = set()
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--input_path", required=True)
+    parser.add_argument("--output_path", required=True)
+    parser.add_argument("--table_name", required=True)  # e.g., sbseg_src.abandonment_metrics_table
+    args = parser.parse_args()
 
-    print("🔍 Fetching list of objects...")
-    paginator = s3_read.get_paginator('list_objects_v2')
-    all_keys = []
-    for page in paginator.paginate(Bucket=SOURCE_BUCKET, Prefix=PREFIX):
-        all_keys += [obj['Key'] for obj in page.get('Contents', [])]
+    # Spark session with Hive support
+    spark = SparkSession.builder \
+        .appName("Register abandonment_metrics_table") \
+        .enableHiveSupport() \
+        .getOrCreate()
 
-    keys_to_copy = [key for key in all_keys if key not in copied_keys]
-    print(f"📦 Total files to copy: {len(keys_to_copy)}")
+    # Define schema from your screenshots
+    schema = T.StructType([
+        T.StructField("properties_custom_companyid", T.StringType()),
+        T.StructField("context_auth_id", T.StringType()),
+        T.StructField("visitor_session_id", T.StringType()),
+        T.StructField("properties_custom_event_sender_workflow_id", T.StringType()),
+        T.StructField("properties_custom_button_location", T.StringType()),
+        T.StructField("properties_custom_search_results", T.StringType()),
+        T.StructField("properties_custom_search_type", T.StringType()),
+        T.StructField("properties_custom_search_query", T.StringType()),
+        T.StructField("original_context_page_path", T.StringType()),
+        T.StructField("context_page_path", T.StringType()),
+        T.StructField("prev_timestamp", T.TimestampType()),
+        T.StructField("next_timestamp", T.TimestampType()),
+        T.StructField("search_time_difference", T.DoubleType()),
+        T.StructField("event", T.StringType()),
+        T.StructField("object", T.StringType()),
+        T.StructField("next_event", T.StringType()),
+        T.StructField("prev_ui_action", T.StringType()),
+        T.StructField("ui_action", T.StringType()),
+        T.StructField("next_ui_action", T.StringType()),
+        T.StructField("ui_object", T.StringType()),
+        T.StructField("ui_object_detail", T.StringType()),
+        T.StructField("object_detail", T.StringType()),
+        T.StructField("item_id", T.StringType()),
+        T.StructField("rank", T.IntegerType()),
+        T.StructField("dwell_time", T.DoubleType()),
+        T.StructField("interaction_type", T.StringType()),
+        T.StructField("group_id", T.StringType()),
+        T.StructField("canceled_searches", T.BooleanType()),
+        T.StructField("canceled_search_two_events", T.BooleanType()),
+        T.StructField("canceled_search_three_events", T.BooleanType()),
+        T.StructField("failed_searches", T.BooleanType()),
+    ])
 
-    # Multiprocessing pool with tqdm
-    with Manager() as manager:
-        shared_copied = manager.dict()
-        args = [(key, copied_keys) for key in keys_to_copy]
+    # Read data
+    df = spark.read.schema(schema).parquet(args.input_path)
 
-        with Pool(processes=cpu_count()) as pool:
-            for _ in tqdm(pool.imap_unordered(copy_key, args), total=len(args), desc="Copying files", unit="file"):
-                pass
+    # Add partition columns
+    df = df.withColumn("run_year", year(current_timestamp())) \
+           .withColumn("run_month", month(current_timestamp())) \
+           .withColumn("run_day", dayofmonth(current_timestamp())) \
+           .withColumn("run_hour", hour(current_timestamp()))
 
-    print("✅ All uncopied files streamed and saved successfully.")
+    # Write to S3 and register table
+    df.write \
+        .format("parquet") \
+        .mode("overwrite") \
+        .partitionBy("run_year", "run_month", "run_day", "run_hour") \
+        .option("path", args.output_path) \
+        .saveAsTable(args.table_name)
+
+    print(f"✅ Registered table: {args.table_name} at {args.output_path}")
 
 if __name__ == "__main__":
     main()
