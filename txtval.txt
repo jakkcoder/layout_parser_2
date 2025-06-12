@@ -1,65 +1,26 @@
-from pyspark.sql import SparkSession, types as T
-import argparse
-from pyspark.sql.functions import year, month, dayofmonth, hour, current_timestamp
-
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--input_path", required=True)
     parser.add_argument("--output_path", required=True)
-    parser.add_argument("--table_name", required=True)  # e.g., sbseg_src.abandonment_metrics_table
+    parser.add_argument("--table_name", required=True)
     args = parser.parse_args()
 
-    # Spark session with Hive support
     spark = SparkSession.builder \
         .appName("Register abandonment_metrics_table") \
         .enableHiveSupport() \
         .getOrCreate()
 
-    # Define schema from your screenshots
-    schema = T.StructType([
-        T.StructField("properties_custom_companyid", T.StringType()),
-        T.StructField("context_auth_id", T.StringType()),
-        T.StructField("visitor_session_id", T.StringType()),
-        T.StructField("properties_custom_event_sender_workflow_id", T.StringType()),
-        T.StructField("properties_custom_button_location", T.StringType()),
-        T.StructField("properties_custom_search_results", T.StringType()),
-        T.StructField("properties_custom_search_type", T.StringType()),
-        T.StructField("properties_custom_search_query", T.StringType()),
-        T.StructField("original_context_page_path", T.StringType()),
-        T.StructField("context_page_path", T.StringType()),
-        T.StructField("prev_timestamp", T.TimestampType()),
-        T.StructField("next_timestamp", T.TimestampType()),
-        T.StructField("search_time_difference", T.DoubleType()),
-        T.StructField("event", T.StringType()),
-        T.StructField("object", T.StringType()),
-        T.StructField("next_event", T.StringType()),
-        T.StructField("prev_ui_action", T.StringType()),
-        T.StructField("ui_action", T.StringType()),
-        T.StructField("next_ui_action", T.StringType()),
-        T.StructField("ui_object", T.StringType()),
-        T.StructField("ui_object_detail", T.StringType()),
-        T.StructField("object_detail", T.StringType()),
-        T.StructField("item_id", T.StringType()),
-        T.StructField("rank", T.IntegerType()),
-        T.StructField("dwell_time", T.DoubleType()),
-        T.StructField("interaction_type", T.StringType()),
-        T.StructField("group_id", T.StringType()),
-        T.StructField("canceled_searches", T.BooleanType()),
-        T.StructField("canceled_search_two_events", T.BooleanType()),
-        T.StructField("canceled_search_three_events", T.BooleanType()),
-        T.StructField("failed_searches", T.BooleanType()),
-    ])
+    # Dynamically get schema from Parquet files
+    inferred_schema = spark.read.parquet(args.input_path).schema
 
-    # Read data
-    df = spark.read.schema(schema).parquet(args.input_path)
+    # Read the actual data using inferred schema
+    df = spark.read.schema(inferred_schema).parquet(args.input_path) \
+        .withColumn("run_year", year(current_timestamp())) \
+        .withColumn("run_month", month(current_timestamp())) \
+        .withColumn("run_day", dayofmonth(current_timestamp())) \
+        .withColumn("run_hour", hour(current_timestamp()))
 
-    # Add partition columns
-    df = df.withColumn("run_year", year(current_timestamp())) \
-           .withColumn("run_month", month(current_timestamp())) \
-           .withColumn("run_day", dayofmonth(current_timestamp())) \
-           .withColumn("run_hour", hour(current_timestamp()))
-
-    # Write to S3 and register table
+    # Write the data with partitioning and overwrite mode
     df.write \
         .format("parquet") \
         .mode("overwrite") \
@@ -68,6 +29,3 @@ def main():
         .saveAsTable(args.table_name)
 
     print(f"✅ Registered table: {args.table_name} at {args.output_path}")
-
-if __name__ == "__main__":
-    main()
