@@ -1,3 +1,34 @@
+from pyspark.sql import SparkSession
+from pyspark.sql.functions import year, month, dayofmonth, hour, current_timestamp
+import argparse
+
+def compare_schemas(df_schema, table_schema):
+    df_fields = {f.name: f.dataType.simpleString() for f in df_schema}
+    table_fields = {f.name: f.dataType.simpleString() for f in table_schema}
+
+    print("🔍 Comparing schemas...\n")
+
+    only_in_df = df_fields.keys() - table_fields.keys()
+    only_in_table = table_fields.keys() - df_fields.keys()
+    mismatched_types = {k: (df_fields[k], table_fields[k]) for k in df_fields.keys() & table_fields.keys()
+                        if df_fields[k] != table_fields[k]}
+
+    if only_in_df:
+        print(f"⚠️ Fields only in DataFrame: {only_in_df}")
+    if only_in_table:
+        print(f"⚠️ Fields only in Table: {only_in_table}")
+    if mismatched_types:
+        print(f"⚠️ Type mismatches:")
+        for col, types in mismatched_types.items():
+            print(f"    - Column: {col} | DF Type: {types[0]} | Table Type: {types[1]}")
+
+    if not (only_in_df or only_in_table or mismatched_types):
+        print("✅ Schemas are compatible.\n")
+        return True
+    else:
+        print("❌ Schema mismatch detected.\n")
+        return False
+
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--input_path", required=True)
@@ -6,26 +37,42 @@ def main():
     args = parser.parse_args()
 
     spark = SparkSession.builder \
-        .appName("Register abandonment_metrics_table") \
+        .appName("SchemaValidatorAndWriter") \
         .enableHiveSupport() \
         .getOrCreate()
 
-    # Dynamically get schema from Parquet files
-    inferred_schema = spark.read.parquet(args.input_path).schema
+    # Step 1: Read input file and infer schema
+    df = spark.read.parquet(args.input_path)
+    df = df.withColumn("run_year", year(current_timestamp())) \
+           .withColumn("run_month", month(current_timestamp())) \
+           .withColumn("run_day", dayofmonth(current_timestamp())) \
+           .withColumn("run_hour", hour(current_timestamp()))
 
-    # Read the actual data using inferred schema
-    df = spark.read.schema(inferred_schema).parquet(args.input_path) \
-        .withColumn("run_year", year(current_timestamp())) \
-        .withColumn("run_month", month(current_timestamp())) \
-        .withColumn("run_day", dayofmonth(current_timestamp())) \
-        .withColumn("run_hour", hour(current_timestamp()))
+    print("📦 DataFrame schema:")
+    df.printSchema()
 
-    # Write the data with partitioning and overwrite mode
-    df.write \
-        .format("parquet") \
-        .mode("overwrite") \
-        .partitionBy("run_year", "run_month", "run_day", "run_hour") \
-        .option("path", args.output_path) \
-        .saveAsTable(args.table_name)
+    # Step 2: Fetch existing table schema from Hive metastore
+    try:
+        table_df = spark.table(args.table_name)
+        print(f"\n📚 Existing Hive Table ({args.table_name}) schema:")
+        table_df.printSchema()
+        compatible = compare_schemas(df.schema, table_df.schema)
+    except Exception as e:
+        print(f"⚠️ Hive table {args.table_name} does not exist or could not be loaded.")
+        compatible = True  # Assume new table creation is fine
 
-    print(f"✅ Registered table: {args.table_name} at {args.output_path}")
+    # Step 3: Write only if schemas are compatible
+    if compatible:
+        df.write \
+            .format("parquet") \
+            .mode("overwrite") \
+            .partitionBy("run_year", "run_month", "run_day", "run_hour") \
+            .option("path", args.output_path) \
+            .saveAsTable(args.table_name)
+
+        print(f"✅ Successfully registered table: {args.table_name} at {args.output_path}")
+    else:
+        print("❌ Skipping write due to schema mismatch.")
+
+if __name__ == "__main__":
+    main()
