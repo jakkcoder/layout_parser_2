@@ -8,26 +8,24 @@ def compare_schemas(df_schema, table_schema):
 
     print("🔍 Comparing schemas...\n")
 
-    only_in_df = df_fields.keys() - table_fields.keys()
-    only_in_table = table_fields.keys() - df_fields.keys()
-    mismatched_types = {k: (df_fields[k], table_fields[k]) for k in df_fields.keys() & table_fields.keys()
-                        if df_fields[k] != table_fields[k]}
+    only_in_df = set(df_fields) - set(table_fields)
+    only_in_table = set(table_fields) - set(df_fields)
+    mismatched_types = {
+        col: (df_fields[col], table_fields[col])
+        for col in set(df_fields) & set(table_fields)
+        if df_fields[col] != table_fields[col]
+    }
 
     if only_in_df:
-        print(f"⚠️ Fields only in DataFrame: {only_in_df}")
+        print(f"⚠️ Columns only in DataFrame: {sorted(only_in_df)}")
     if only_in_table:
-        print(f"⚠️ Fields only in Table: {only_in_table}")
+        print(f"⚠️ Columns only in Hive Table: {sorted(only_in_table)}")
     if mismatched_types:
         print(f"⚠️ Type mismatches:")
-        for col, types in mismatched_types.items():
-            print(f"    - Column: {col} | DF Type: {types[0]} | Table Type: {types[1]}")
+        for col, (df_type, table_type) in mismatched_types.items():
+            print(f"   - Column: {col} | DF Type: {df_type} | Table Type: {table_type}")
 
-    if not (only_in_df or only_in_table or mismatched_types):
-        print("✅ Schemas are compatible.\n")
-        return True
-    else:
-        print("❌ Schema mismatch detected.\n")
-        return False
+    return not (only_in_df or only_in_table or mismatched_types)
 
 def main():
     parser = argparse.ArgumentParser()
@@ -41,38 +39,38 @@ def main():
         .enableHiveSupport() \
         .getOrCreate()
 
-    # Step 1: Read input file and infer schema
-    df = spark.read.parquet(args.input_path)
-    df = df.withColumn("run_year", year(current_timestamp())) \
-           .withColumn("run_month", month(current_timestamp())) \
-           .withColumn("run_day", dayofmonth(current_timestamp())) \
-           .withColumn("run_hour", hour(current_timestamp()))
+    # Step 1: Load data
+    df = spark.read.parquet(args.input_path) \
+        .withColumn("run_year", year(current_timestamp())) \
+        .withColumn("run_month", month(current_timestamp())) \
+        .withColumn("run_day", dayofmonth(current_timestamp())) \
+        .withColumn("run_hour", hour(current_timestamp()))
 
-    print("📦 DataFrame schema:")
+    print("📦 Inferred DataFrame Schema:")
     df.printSchema()
 
-    # Step 2: Fetch existing table schema from Hive metastore
+    # Step 2: Try comparing with existing table
     try:
         table_df = spark.table(args.table_name)
-        print(f"\n📚 Existing Hive Table ({args.table_name}) schema:")
+        print(f"\n📚 Existing Hive Table Schema for {args.table_name}:")
         table_df.printSchema()
         compatible = compare_schemas(df.schema, table_df.schema)
     except Exception as e:
-        print(f"⚠️ Hive table {args.table_name} does not exist or could not be loaded.")
-        compatible = True  # Assume new table creation is fine
+        print(f"⚠️ Could not read Hive table {args.table_name}. Assuming new table. Error: {e}")
+        compatible = True
 
-    # Step 3: Write only if schemas are compatible
+    # Step 3: Write only if schema is compatible
     if compatible:
+        print("🚀 Writing DataFrame to table...")
         df.write \
             .format("parquet") \
             .mode("overwrite") \
             .partitionBy("run_year", "run_month", "run_day", "run_hour") \
             .option("path", args.output_path) \
             .saveAsTable(args.table_name)
-
-        print(f"✅ Successfully registered table: {args.table_name} at {args.output_path}")
+        print(f"✅ Successfully saved table: {args.table_name}")
     else:
-        print("❌ Skipping write due to schema mismatch.")
+        print("❌ Schema mismatch — skipping write.")
 
 if __name__ == "__main__":
     main()
