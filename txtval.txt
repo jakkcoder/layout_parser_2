@@ -1,76 +1,58 @@
-from pyspark.sql import SparkSession
-from pyspark.sql.functions import year, month, dayofmonth, hour, current_timestamp
-import argparse
+SELECT
+  ui_object_detail,
+  EXTRACT(YEAR FROM derived_timestamp) AS run_year,
+  EXTRACT(MONTH FROM derived_timestamp) AS run_month,
+  EXTRACT(DAY FROM derived_timestamp) AS run_day,
+  EXTRACT(HOUR FROM derived_timestamp) AS run_hour,
 
-def compare_schemas(df_schema, table_schema):
-    df_fields = {f.name: f.dataType.simpleString() for f in df_schema}
-    table_fields = {f.name: f.dataType.simpleString() for f in table_schema}
+  -- Count of short-lived clicks
+  SUM(CASE 
+        WHEN interaction_type = 'SHORT_LIVED_CLICK' AND ui_action = 'clicked' THEN 1 
+        ELSE 0 
+      END) AS short_lived_clicks,
 
-    print("🔍 Comparing schemas...\n")
+  -- Count of positive implicit clicks
+  SUM(CASE 
+        WHEN interaction_type = 'POSITIVE_IMPLICIT' AND ui_action = 'clicked' THEN 1 
+        ELSE 0 
+      END) AS positive_implicit_clicks,
 
-    only_in_df = set(df_fields) - set(table_fields)
-    only_in_table = set(table_fields) - set(df_fields)
-    mismatched_types = {
-        col: (df_fields[col], table_fields[col])
-        for col in set(df_fields) & set(table_fields)
-        if df_fields[col] != table_fields[col]
-    }
+  -- Count of not clicked rows
+  SUM(CASE 
+        WHEN ui_action != 'clicked' THEN 1 
+        ELSE 0 
+      END) AS not_clicked,
 
-    if only_in_df:
-        print(f"⚠️ Columns only in DataFrame: {sorted(only_in_df)}")
-    if only_in_table:
-        print(f"⚠️ Columns only in Hive Table: {sorted(only_in_table)}")
-    if mismatched_types:
-        print(f"⚠️ Type mismatches:")
-        for col, (df_type, table_type) in mismatched_types.items():
-            print(f"   - Column: {col} | DF Type: {df_type} | Table Type: {table_type}")
+  -- Count of clicked rows
+  SUM(CASE 
+        WHEN ui_action = 'clicked' THEN 1 
+        ELSE 0 
+      END) AS clicked,
 
-    return not (only_in_df or only_in_table or mismatched_types)
+  -- Click Through Rate
+  SAFE_DIVIDE(
+    SUM(CASE 
+          WHEN interaction_type = 'POSITIVE_IMPLICIT' AND ui_action = 'clicked' THEN 1 
+          ELSE 0 
+        END),
+    SUM(CASE 
+          WHEN ui_action = 'clicked' THEN 1 
+          ELSE 0 
+        END)
+  ) AS click_through_rate
 
-def main():
-    parser = argparse.ArgumentParser()
-    parser.add_argument("--input_path", required=True)
-    parser.add_argument("--output_path", required=True)
-    parser.add_argument("--table_name", required=True)
-    args = parser.parse_args()
-
-    spark = SparkSession.builder \
-        .appName("SchemaValidatorAndWriter") \
-        .enableHiveSupport() \
-        .getOrCreate()
-
-    # Step 1: Load data
-    df = spark.read.parquet(args.input_path) \
-        .withColumn("run_year", year(current_timestamp())) \
-        .withColumn("run_month", month(current_timestamp())) \
-        .withColumn("run_day", dayofmonth(current_timestamp())) \
-        .withColumn("run_hour", hour(current_timestamp()))
-
-    print("📦 Inferred DataFrame Schema:")
-    df.printSchema()
-
-    # Step 2: Try comparing with existing table
-    try:
-        table_df = spark.table(args.table_name)
-        print(f"\n📚 Existing Hive Table Schema for {args.table_name}:")
-        table_df.printSchema()
-        compatible = compare_schemas(df.schema, table_df.schema)
-    except Exception as e:
-        print(f"⚠️ Could not read Hive table {args.table_name}. Assuming new table. Error: {e}")
-        compatible = True
-
-    # Step 3: Write only if schema is compatible
-    if compatible:
-        print("🚀 Writing DataFrame to table...")
-        df.write \
-            .format("parquet") \
-            .mode("overwrite") \
-            .partitionBy("run_year", "run_month", "run_day", "run_hour") \
-            .option("path", args.output_path) \
-            .saveAsTable(args.table_name)
-        print(f"✅ Successfully saved table: {args.table_name}")
-    else:
-        print("❌ Schema mismatch — skipping write.")
-
-if __name__ == "__main__":
-    main()
+FROM
+  search_golden_data
+WHERE
+  ui_object_detail IN ('transactions', 'contacts', 'reports', 'ledger_accounts', 'jump_to')
+GROUP BY
+  ui_object_detail,
+  run_year,
+  run_month,
+  run_day,
+  run_hour
+ORDER BY
+  run_year,
+  run_month,
+  run_day,
+  run_hour;
