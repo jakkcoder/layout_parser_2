@@ -1,39 +1,60 @@
+-- ⬇️ Replace this SELECT with the exact Custom SQL you already have in Tableau
 WITH base AS (
   SELECT
-    sg.item_category,
-    -- parse timestamp if it's a string; otherwise just use sg.derived_timestamp
-    from_iso8601_timestamp(sg.derived_timestamp) AS ts,
-    sg.ui_action,
-    sg.interaction_type
-  FROM qbkr.search_golden_dataset AS sg
-  WHERE sg.item_category NOT IN ('transactions','content','reports','ledger_accounts','jump_to')
+    -- your existing columns...
+    ui_object_detail,
+    interaction_type,
+    -- if you already select derived_timestamp keep it; else compute it in your query
+    derived_timestamp
+  FROM `your_project.your_dataset.search_golden_data`
+  -- ...plus any existing filters/joins you already have
 ),
+
+enriched AS (
+  SELECT
+    ui_object_detail,
+    interaction_type,
+    EXTRACT(YEAR  FROM derived_timestamp) AS year,
+    EXTRACT(MONTH FROM derived_timestamp) AS month,
+    EXTRACT(DAY   FROM derived_timestamp) AS day,
+    EXTRACT(HOUR  FROM derived_timestamp) AS hour
+  FROM base
+  WHERE ui_object_detail IN ('transactions','reports','ledger_accounts','jump_to')
+),
+
 agg AS (
   SELECT
-    item_category,
-    EXTRACT(YEAR  FROM ts) AS run_year,
-    EXTRACT(MONTH FROM ts) AS run_month,
-    EXTRACT(DAY   FROM ts) AS run_day,
-    EXTRACT(HOUR  FROM ts) AS run_hour,
+    ui_object_detail,
+    year, month, day, hour,
 
-    SUM(CASE WHEN interaction_type = 'SHORT_LIVED_CLICK'
-              AND ui_action = 'clicked' THEN 1 ELSE 0 END) AS short_lived_clicks,
+    -- counts
+    SUM(CASE WHEN interaction_type IN ('POSITIVE_IMPLICIT','SHORT_LIVED_CLICK') THEN 1 ELSE 0 END) AS clicked,
+    SUM(CASE WHEN interaction_type = 'POSITIVE_IMPLICIT' THEN 1 ELSE 0 END)                         AS positive_implicit_clicks,
+    SUM(CASE WHEN interaction_type = 'SHORT_LIVED_CLICK' THEN 1 ELSE 0 END)                         AS short_lived_clicks,
+    SUM(CASE WHEN interaction_type = 'IMPRESSION' THEN 1 ELSE 0 END)                                AS impressions,
+    SUM(CASE WHEN interaction_type NOT IN ('POSITIVE_IMPLICIT','SHORT_LIVED_CLICK') THEN 1 ELSE 0 END) AS not_clicked,
 
-    SUM(CASE WHEN interaction_type = 'POSITIVE_IMPLICIT'
-              AND ui_action = 'clicked' THEN 1 ELSE 0 END) AS positive_implicit_clicks,
-
-    SUM(CASE WHEN ui_action = 'clicked' THEN 1 ELSE 0 END) AS clicked,
-    SUM(CASE WHEN ui_action <> 'clicked' THEN 1 ELSE 0 END) AS not_clicked,
-
-    -- SAFE_DIVIDE replacement
-    CAST(SUM(CASE WHEN ui_action = 'clicked' THEN 1 ELSE 0 END) AS double)
-      / NULLIF(COUNT(*), 0) AS click_through_rate
-  FROM base
-  GROUP BY
-    item_category,
-    EXTRACT(YEAR  FROM ts),
-    EXTRACT(MONTH FROM ts),
-    EXTRACT(DAY   FROM ts),
-    EXTRACT(HOUR  FROM ts)
+    -- ctr (0–1) and %
+    SAFE_DIVIDE(
+      SUM(CASE WHEN interaction_type IN ('POSITIVE_IMPLICIT','SHORT_LIVED_CLICK') THEN 1 ELSE 0 END),
+      NULLIF(SUM(CASE WHEN interaction_type = 'IMPRESSION' THEN 1 ELSE 0 END), 0)
+    ) AS ctr
+  FROM enriched
+  GROUP BY ui_object_detail, year, month, day, hour
 )
-SELECT * FROM agg;
+
+SELECT
+  ui_object_detail,
+  year, month, day, hour,
+  clicked,
+  positive_implicit_clicks,
+  short_lived_clicks,
+  impressions,
+  not_clicked,
+  ctr,
+  100 * ctr AS ctr_pct,
+  RANK() OVER (
+    PARTITION BY year, month, day, hour, ui_object_detail
+    ORDER BY ctr DESC
+  ) AS ctr_rank
+FROM agg;
