@@ -1,11 +1,34 @@
 SELECT
-  t.*,
-  CASE WHEN item_category = 'jump_to'
-       THEN CAST(clicked AS DOUBLE) / NULLIF(impressions, 0)
-  END AS jump_to_ctr
+  item_category,
+  item_id,
+  year,
+  month,
+  day,
+  hour,
+
+  clicked,
+  positive_implicit_clicks,
+  short_lived_clicks,
+  impressions,
+  not_clicked,
+  ctr,
+  100 * ctr AS ctr_pct,
+
+  -- NEW: jump_to CTR on the jump_to row
+  CASE
+    WHEN item_category = 'jump_to'
+      THEN CAST(clicked AS DOUBLE) / NULLIF(impressions, 0)
+  END AS jump_to_ctr,
+
+  RANK() OVER (
+    PARTITION BY year, month, day, hour
+    ORDER BY ctr DESC
+  ) AS ctr_rank
+
 FROM (
   SELECT
     item_category,
+    item_id,
     EXTRACT(year  FROM derived_timestamp) AS year,
     EXTRACT(month FROM derived_timestamp) AS month,
     EXTRACT(day   FROM derived_timestamp) AS day,
@@ -15,13 +38,15 @@ FROM (
     SUM(CASE WHEN interaction_type = 'POSITIVE_IMPLICIT' THEN 1 ELSE 0 END) AS positive_implicit_clicks,
     SUM(CASE WHEN interaction_type = 'SHORT_LIVED_CLICK' THEN 1 ELSE 0 END) AS short_lived_clicks,
     SUM(CASE WHEN interaction_type = 'IMPRESSION'        THEN 1 ELSE 0 END) AS impressions,
+    SUM(CASE WHEN interaction_type NOT IN ('POSITIVE_IMPLICIT','SHORT_LIVED_CLICK') THEN 1 ELSE 0 END) AS not_clicked,
 
     CAST(
       SUM(CASE WHEN interaction_type IN ('POSITIVE_IMPLICIT','SHORT_LIVED_CLICK') THEN 1 ELSE 0 END) AS DOUBLE
     ) / NULLIF(
       SUM(CASE WHEN interaction_type = 'IMPRESSION' THEN 1 ELSE 0 END), 0
     ) AS ctr
+
   FROM project.dataset.search_golden_data
-  WHERE item_category IN ('jump_to','transactions','reports','contacts','ledger_accounts')
-  GROUP BY item_category, year, month, day, hour
+  WHERE item_category IN ('transactions','reports','ledger_accounts','jump_to','contacts')
+  GROUP BY item_category, item_id, year, month, day, hour
 ) t;
