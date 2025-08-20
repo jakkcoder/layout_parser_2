@@ -1,33 +1,8 @@
 SELECT
-  item_category,
-  year,
-  month,
-  day,
-  hour,
-  clicked,
-  positive_implicit_clicks,
-  short_lived_clicks,
-  impressions,
-  not_clicked,
-  ctr,
-  100 * ctr AS ctr_pct,
-
-  -- category-specific CTRs (only populated on their own row)
+  t.*,
   CASE WHEN item_category = 'jump_to'
-       THEN CAST(clicked AS DOUBLE) / NULLIF(impressions, 0) END AS jump_to_ctr,
-  CASE WHEN item_category = 'transactions'
-       THEN CAST(clicked AS DOUBLE) / NULLIF(impressions, 0) END AS transactions_ctr,
-  CASE WHEN item_category = 'reports'
-       THEN CAST(clicked AS DOUBLE) / NULLIF(impressions, 0) END AS reports_ctr,
-  CASE WHEN item_category = 'contacts'
-       THEN CAST(clicked AS DOUBLE) / NULLIF(impressions, 0) END AS contacts_ctr,
-  CASE WHEN item_category = 'ledger_accounts'
-       THEN CAST(clicked AS DOUBLE) / NULLIF(impressions, 0) END AS ledger_accounts_ctr,
-
-  RANK() OVER (
-    PARTITION BY year, month, day, hour
-    ORDER BY ctr DESC
-  ) AS ctr_rank
+       THEN CAST(clicked AS DOUBLE) / NULLIF(impressions, 0)
+  END AS jump_to_ctr
 FROM (
   SELECT
     item_category,
@@ -41,22 +16,12 @@ FROM (
     SUM(CASE WHEN interaction_type = 'SHORT_LIVED_CLICK' THEN 1 ELSE 0 END) AS short_lived_clicks,
     SUM(CASE WHEN interaction_type = 'IMPRESSION'        THEN 1 ELSE 0 END) AS impressions,
 
-    -- If you want true "not clicked" relative to impressions:
-    -- impressions - clicked (keeps totals consistent)
-    SUM(CASE WHEN interaction_type = 'IMPRESSION' THEN 1 ELSE 0 END)
-      - SUM(CASE WHEN interaction_type IN ('POSITIVE_IMPLICIT','SHORT_LIVED_CLICK') THEN 1 ELSE 0 END)
-      AS not_clicked,
-
-    -- CTR (avoid divide-by-zero)
     CAST(
-      SUM(CASE WHEN interaction_type IN ('POSITIVE_IMPLICIT','SHORT_LIVED_CLICK') THEN 1 ELSE 0 END)
-      AS DOUBLE
+      SUM(CASE WHEN interaction_type IN ('POSITIVE_IMPLICIT','SHORT_LIVED_CLICK') THEN 1 ELSE 0 END) AS DOUBLE
     ) / NULLIF(
-      SUM(CASE WHEN interaction_type = 'IMPRESSION' THEN 1 ELSE 0 END),
-      0
+      SUM(CASE WHEN interaction_type = 'IMPRESSION' THEN 1 ELSE 0 END), 0
     ) AS ctr
-
   FROM project.dataset.search_golden_data
-  WHERE item_category IN ('transactions','reports','ledger_accounts','jump_to','contacts')
+  WHERE item_category IN ('jump_to','transactions','reports','contacts','ledger_accounts')
   GROUP BY item_category, year, month, day, hour
 ) t;
