@@ -1,35 +1,3 @@
-WITH enriched AS (
-  SELECT
-    item_category,
-    interaction_type,
-    year(derived_timestamp)  AS year,
-    month(derived_timestamp) AS month,
-    day(derived_timestamp)   AS day,
-    hour(derived_timestamp)  AS hour
-  FROM "qbrk"."search_golden_dataset"
-  WHERE item_category IN ('transactions','reports','ledger_accounts','jump_to')
-),
-
-agg AS (
-  SELECT
-    item_category,
-    year,
-    month,
-    day,
-    hour,
-
-    SUM(CASE WHEN interaction_type IN ('POSITIVE_IMPLICIT','SHORT_LIVED_CLICK') THEN 1 ELSE 0 END) AS clicked,
-    SUM(CASE WHEN interaction_type = 'POSITIVE_IMPLICIT' THEN 1 ELSE 0 END) AS positive_implicit_clicks,
-    SUM(CASE WHEN interaction_type = 'SHORT_LIVED_CLICK' THEN 1 ELSE 0 END) AS short_lived_clicks,
-    SUM(CASE WHEN interaction_type = 'IMPRESSION' THEN 1 ELSE 0 END) AS impressions,
-    SUM(CASE WHEN interaction_type NOT IN ('POSITIVE_IMPLICIT','SHORT_LIVED_CLICK') THEN 1 ELSE 0 END) AS not_clicked,
-
-    CAST(SUM(CASE WHEN interaction_type IN ('POSITIVE_IMPLICIT','SHORT_LIVED_CLICK') THEN 1 ELSE 0 END) AS DOUBLE)
-      / NULLIF(SUM(CASE WHEN interaction_type = 'IMPRESSION' THEN 1 ELSE 0 END),0) AS ctr
-  FROM enriched
-  GROUP BY item_category, year, month, day, hour
-)
-
 SELECT
   item_category,
   year,
@@ -43,8 +11,48 @@ SELECT
   not_clicked,
   ctr,
   100 * ctr AS ctr_pct,
+
+  -- New: category-specific CTRs (only populated when that category matches)
+  CASE WHEN item_category = 'jump_to'
+       THEN SAFE_DIVIDE(clicked, impressions) END AS jump_to_ctr,
+
+  CASE WHEN item_category = 'transactions'
+       THEN SAFE_DIVIDE(clicked, impressions) END AS transactions_ctr,
+
+  CASE WHEN item_category = 'reports'
+       THEN SAFE_DIVIDE(clicked, impressions) END AS reports_ctr,
+
+  CASE WHEN item_category = 'contacts'
+       THEN SAFE_DIVIDE(clicked, impressions) END AS contacts_ctr,
+
+  CASE WHEN item_category = 'ledger_accounts'
+       THEN SAFE_DIVIDE(clicked, impressions) END AS ledger_accounts_ctr,
+
   RANK() OVER (
     PARTITION BY year, month, day, hour
     ORDER BY ctr DESC
   ) AS ctr_rank
-FROM agg;
+
+FROM (
+  SELECT
+    item_category,
+    EXTRACT(YEAR  FROM derived_timestamp) AS year,
+    EXTRACT(MONTH FROM derived_timestamp) AS month,
+    EXTRACT(DAY   FROM derived_timestamp) AS day,
+    EXTRACT(HOUR  FROM derived_timestamp) AS hour,
+
+    SUM(CASE WHEN interaction_type IN ('POSITIVE_IMPLICIT','SHORT_LIVED_CLICK') THEN 1 ELSE 0 END) AS clicked,
+    SUM(CASE WHEN interaction_type = 'POSITIVE_IMPLICIT' THEN 1 ELSE 0 END) AS positive_implicit_clicks,
+    SUM(CASE WHEN interaction_type = 'SHORT_LIVED_CLICK' THEN 1 ELSE 0 END) AS short_lived_clicks,
+    SUM(CASE WHEN interaction_type = 'IMPRESSION' THEN 1 ELSE 0 END) AS impressions,
+    SUM(CASE WHEN interaction_type NOT IN ('POSITIVE_IMPLICIT','SHORT_LIVED_CLICK') THEN 1 ELSE 0 END) AS not_clicked,
+
+    SAFE_DIVIDE(
+      SUM(CASE WHEN interaction_type IN ('POSITIVE_IMPLICIT','SHORT_LIVED_CLICK') THEN 1 ELSE 0 END),
+      SUM(CASE WHEN interaction_type = 'IMPRESSION' THEN 1 ELSE 0 END)
+    ) AS ctr
+
+  FROM `project.dataset.search_golden_data`
+  WHERE item_category IN ('transactions','reports','ledger_accounts','jump_to','contacts')
+  GROUP BY item_category, year, month, day, hour
+) t;
